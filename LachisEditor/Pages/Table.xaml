@@ -1,0 +1,48 @@
+﻿<Page x:Class="LachisEditor.Pages.Table"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:igDP="http://infragistics.com/DataPresenter"
+      xmlns:igE="http://infragistics.com/Editors"
+      Unloaded="Page_Unloaded">
+   <Page.Resources>
+      <SolidColorBrush x:Key="scbGray" Color="#88CCCCCC"/>
+   </Page.Resources>
+   <Grid SnapsToDevicePixels="True">
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <igDP:XamDataGrid Grid.Row="1" x:Name="xdgGeneric" 
+                        RecordLoadMode="PreloadRecords" 
+                        ScrollingMode="Immediate" 
+                        Theme="Office2k7Black"
+                        FieldLayoutInitialized="xdgGeneric_FieldLayoutInitialized">
+         <igDP:XamDataGrid.Resources>
+            <Style TargetType="{x:Type igDP:LabelPresenter}">
+               <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Field.Tag}"/>
+            </Style>
+            <Style TargetType="{x:Type igE:XamCurrencyEditor}">
+               <Setter Property="Mask" Value="{}{double:-10.15}"/>
+               <Setter Property ="PromptChar" Value =" "/>
+               <Setter Property="Format" Value="0.#####"/>
+            </Style>
+            <Style TargetType="{x:Type igE:XamNumericEditor}">
+               <Setter Property ="PromptChar" Value =" "/>
+            </Style>
+         </igDP:XamDataGrid.Resources>
+         <igDP:XamDataGrid.FieldLayoutSettings>
+            <igDP:FieldLayoutSettings 
+               AddNewRecordLocation="OnBottom"
+               AllowAddNew="True" 
+               AllowDelete="True" 
+               AllowFieldMoving="WithinLogicalRow" 
+               HighlightAlternateRecords="True"/>
+         </igDP:XamDataGrid.FieldLayoutSettings>
+         <igDP:XamDataGrid.FieldSettings>
+            <igDP:FieldSettings 
+               AllowEdit="True" LabelTextTrimming="None"/>
+         </igDP:XamDataGrid.FieldSettings>
+      </igDP:XamDataGrid>
+   </Grid>
+</Page>
+   

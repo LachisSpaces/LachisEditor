@@ -1,0 +1,81 @@
+﻿<Window x:Class="LachisEditor.LayoutDefinition"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:igDP="http://infragistics.com/DataPresenter"
+    DataContext="{Binding Source={StaticResource Lang}}"
+    Title="Field Layout" Height="800" MinHeight="560" Width="650" MinWidth="634">
+   <Grid SnapsToDevicePixels="True">
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="*"/>
+         <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <StackPanel Grid.Row="1" Grid.Column="1">
+         <Button x:Name="cmdMoveUp" Content="{Binding XPath=LayoutDefinition/Buttons/MoveUp/@Text}" Margin="15,20,15,0" Padding="10,8" Click="MoveRows"/>
+         <Button x:Name="cmdMoveDown" Content="{Binding XPath=LayoutDefinition/Buttons/MoveDown/@Text}" Margin="15,10,15,0" Padding="10,8" Click="MoveRows"/>
+         <Button x:Name="cmdMoveUp5" Content="{Binding XPath=LayoutDefinition/Buttons/MoveUp5/@Text}" Margin="15,20,15,0" Padding="10,8" Click="MoveRows"/>
+         <Button x:Name="cmdMoveDown5" Content="{Binding XPath=LayoutDefinition/Buttons/MoveDown5/@Text}" Margin="15,10,15,0" Padding="10,8" Click="MoveRows"/>
+         <Button x:Name="cmdMoveUp10" Content="{Binding XPath=LayoutDefinition/Buttons/MoveUp10/@Text}" Margin="15,20,15,0" Padding="10,8" Click="MoveRows"/>
+         <Button x:Name="cmdMoveDown10" Content="{Binding XPath=LayoutDefinition/Buttons/MoveDown10/@Text}" Margin="15,10,15,0" Padding="10,8" Click="MoveRows"/>
+         <Button x:Name="cmdMoveFirst" Content="{Binding XPath=LayoutDefinition/Buttons/MoveFirst/@Text}" Margin="15,20,15,0" Padding="10,8" Click="MoveRows"/>
+         <Button x:Name="cmdMoveLast" Content="{Binding XPath=LayoutDefinition/Buttons/MoveLast/@Text}" Margin="15,10,15,0" Padding="10,8" Click="MoveRows"/>
+      </StackPanel>
+      <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom">
+         <Button x:Name="cmdApply" Content="{Binding XPath=LayoutDefinition/Buttons/Apply/@Text}" Margin="15,0,15,10" Padding="10,8" Click="cmdApply_Click"/>
+         <Button x:Name="cmdCancel" Content="{Binding XPath=LayoutDefinition/Buttons/Cancel/@Text}" Margin="15,0,15,20" Padding="10,8" Click="cmdCancel_Click"/>
+      </StackPanel>
+      <igDP:XamDataGrid Grid.Row="1" x:Name="xdgLayout" 
+                        FieldLayoutInitialized="xdgLayout_FieldLayoutInitialized"
+                        GroupByAreaLocation="None" 
+                        ScrollingMode="Immediate" 
+                        Sorting="xdgLayout_Sorting"
+                        Theme="Office2k7Black">
+         <igDP:XamDataGrid.FieldLayoutSettings>
+            <igDP:FieldLayoutSettings 
+               AllowAddNew="False"
+               AllowDelete="False" 
+               AllowFieldMoving="No" 
+               AutoGenerateFields="False"
+               HighlightAlternateRecords="False"/>
+         </igDP:XamDataGrid.FieldLayoutSettings>
+         <igDP:XamDataGrid.FieldSettings>
+            <igDP:FieldSettings 
+               AllowEdit="True" CellMinWidth="50" LabelMinWidth="50"/>
+         </igDP:XamDataGrid.FieldSettings>
+         <igDP:XamDataGrid.FieldLayouts>
+            <igDP:FieldLayout>
+               <igDP:FieldLayout.SortedFields>
+                  <igDP:FieldSortDescription
+                            Direction="Ascending"
+                            FieldName="Column" />
+               </igDP:FieldLayout.SortedFields>
+               <igDP:FieldLayout.Fields>
+                  <igDP:Field Name="FieldName">
+                     <igDP:Field.Settings>
+                        <igDP:FieldSettings AllowEdit="False" CellWidth="250" CellClickAction="SelectRecord"/>
+                     </igDP:Field.Settings>
+                  </igDP:Field>
+                  <igDP:Field Name="Width">
+                     <igDP:Field.Settings>
+                        <igDP:FieldSettings AllowEdit="True" CellWidth="50" LabelWidth="50"/>
+                     </igDP:Field.Settings>
+                  </igDP:Field>
+                  <igDP:Field Name="Column">
+                     <igDP:Field.Settings>
+                        <igDP:FieldSettings AllowEdit="True" CellWidth="65" LabelWidth="65"/>
+                     </igDP:Field.Settings>
+                  </igDP:Field>
+                  <igDP:Field Name="LayoutGroups">
+                     <igDP:Field.Settings>
+                        <igDP:FieldSettings AllowEdit="True" CellWidth="87" LabelWidth="87"/>
+                     </igDP:Field.Settings>
+                  </igDP:Field>
+               </igDP:FieldLayout.Fields>
+            </igDP:FieldLayout>
+         </igDP:XamDataGrid.FieldLayouts>
+      </igDP:XamDataGrid>
+   </Grid>
+</Window>

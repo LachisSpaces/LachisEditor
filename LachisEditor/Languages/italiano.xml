@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LachisEditor>
+   <MainWindow Text="Lachi's Editor">
+      <ApplicationMenu>
+         <DBImport Text="Estrai un cdb"/>
+         <DBExport Text="Esporta a cdb"/>
+         <DBOpen Text="Apri il Database"/>
+         <DBSave Text="Salva il Database"/>
+         <DBClose Text="Chiudi il database"/>
+         <LanguageSelection Text="Languages" ToolTip="Cambia la lingua dell'applicazione"/>
+         <Options Text="Options" ToolTip="Opzioni generali">
+            <UseTranslatedFields Text="Traduci le colonne"/>
+            <UseForeignKeyLookup Text="Mostra liste invece di ID"/>
+            <UseTeamFilter Text="Filtra per squadre"/>
+         </Options>
+         <Exit Text="Esci"/>
+      </ApplicationMenu>
+      <TabStart Text="Inizia">
+         <Databases Text="Database">
+            <SelectDatebase Text="Seleziona un database"/>
+            <DeleteDatebase Text="Elimina un database"/>
+         </Databases>
+         <Tables Text="Tabelle">
+            <SelectTable Text="Seleziona tabella"/>
+            <DYN_manager Text="Manager"/>
+            <DYN_sponsor Text="Sponsor"/>
+            <DYN_objectif Text="Obiettivi dello sponsor"/>
+            <DYN_team Text="Squadre"/>
+            <DYN_cyclist Text="Ciclisti"/>
+            <STA_race Text="Corse"/>
+            <STA_stage Text="Tappe"/>
+         </Tables>
+         <Filter Text="Filtra">
+            <Apply Text="Applica"/>
+            <Clear Text="Pulisci"/>
+         </Filter>
+         <MassEdit Text="Editing di massa">
+            <Apply Text="Applica"/>
+            <Clear Text="Pulisci"/>
+         </MassEdit>
+         <Layout Text="Layout">
+            <DefineLayout Text="Seleziona un layout"/>
+            <ResetPosition Text="Resetta la posizione delle colonne"/>
+            <ResetSorting Text="Resetta ordinamento/raggruppamento"/>
+            <ResetSize Text="Resetta la dimensione della colonna"/>
+         </Layout>
+         <LayoutSubsets Text="Gruppi di layout">
+            <Layout0 Text="No layout"/>
+            <Layout1 Text="Layout 1"/>
+            <Layout2 Text="Layout 2"/>
+         </LayoutSubsets>
+      </TabStart>
+      <Messages>
+         <NoDataLoaded Text="Devi aprire un database o estrarne uno."/>
+         <DatabaseLoadedAlready Text="Hai già aperto un database"/>
+         <NoRecentDatabase Text="Per favore estrai un database."/>
+         <LoadingWaiting Text="Per favore aspetta che i dati vengano caricati."/>
+         <SecurityCheckUnsavedData Text="Vuoi salvare prima che il database venga chiuso?"/>
+         <FileNameInvalid Text="Il nome del file non è valido. Per favore, prova a rimuovere tutti gli spazi dal nome."/>
+         <MassEditWarning Text="Attenzione, i cambiamenti non possono essere ripristinati.\r\nSe ne hai bisogno, puoi salvare prima.\r\n\r\nUsa il filtro se non vuoi alterare tutte le file."/>
+      </Messages>
+   </MainWindow>
+   <LayoutDefinition Text="Imposta il layout">
+      <Buttons>
+         <MoveUp Text="Muovi su"/>
+         <MoveUp5 Text="Muovi di 5 in su"/>
+         <MoveUp10 Text="Muovi di 10 in su"/>
+         <MoveDown Text="Muovi giù"/>
+         <MoveDown5 Text="Muovi di 5 in giù"/>
+         <MoveDown10 Text="Muovi di 10 in giù"/>
+         <MoveFirst Text="Muovi verso l'inizio"/>
+         <MoveLast Text="Move verso la fine"/>
+         <Cancel Text="Annulla"/>
+         <Apply Text="Applica"/>
+      </Buttons>
+      <Columns>
+         <FieldName Text="Nome della colonna"/>
+         <Width Text="Larghezza"/>
+         <Column Text="Colonna"/>
+         <LayoutGroups Text="Sottogruppi"/>
+      </Columns>
+   </LayoutDefinition>
+   <DBLoader>
+      <LoadDatabaseNoData Text="Impossibile aprire il database, per favore prova ad estrarlo di nuovo."/>
+      <DeleteFitnessProgram Text="Alcuni programmi già esistono.\r\nVuoi elminare i precedenti prima che i nuovi vengano creati?\r\nAttenzione: I programmi potrebbero essere sovrascritti durante la creazione dei nuovi."/>
+      <ExtractDB_NumberInvalid Text="C'è un errore nella tabella  {0}  nella fila  {1} = {2}.\r\nIl valore nella colonna  {3}  è stato resettato a 0.\r\nIl valore sbagliato era {4}\r\n\r\nDevi controllare e cambiare i valori in questa fila."/>
+   </DBLoader>
+
+   <DYN_cyclist>
+      <gene_sz_lastname Text="Cognome"/>
+      <gene_sz_firstname Text="Nome"/>
+      <value_f_current_evaluation Text="Media"/>
+   </DYN_cyclist>
+   <STA_race>
+      <gene_sz_race_name Text="Corsa"/>
+   </STA_race>
+   <STA_stage>
+      <gene_sz_stage_name Text="Nome della tappa"/>
+   </STA_stage>
+</LachisEditor>

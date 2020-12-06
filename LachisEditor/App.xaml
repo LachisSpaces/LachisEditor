@@ -1,0 +1,11 @@
+﻿<Application x:Class="LachisEditor.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:appl="clr-namespace:LachisEditor"
+             xmlns:local="clr-namespace:LachisEditor"
+             DispatcherUnhandledException="App_DispatcherUnhandledException"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+      <XmlDataProvider x:Key="Lang" XPath="LachisEditor"/>
+   </Application.Resources>
+</Application>

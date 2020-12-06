@@ -1,0 +1,153 @@
+﻿<Window x:Class="LachisEditor.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:igRibbon="http://infragistics.com/Ribbon"
+    xmlns:igEditors="http://infragistics.com/Editors"
+    Name="Window" Title="Lachis Editor" WindowState="Maximized"
+    Height="700" MinHeight="500" Width="1000" MinWidth="1000" 
+    DataContext="{Binding Source={StaticResource Lang}}"
+    Closing="Window_Closing">
+   <Window.Resources>
+   </Window.Resources>
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="*"/>
+         <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <igRibbon:XamRibbon x:Name="xamRibbon" Theme="Onyx" IsMinimized="False" AllowMinimize="False">
+         <igRibbon:XamRibbon.ApplicationMenu>
+            <igRibbon:ApplicationMenu Image="Images\32x32\AppIcon.png">
+               <igRibbon:ButtonTool x:Name="rbtDBImport"   Click="rbtDBImport_Click"   LargeImage="Images\32x32\New_Large.png"    Caption="{Binding XPath=MainWindow/ApplicationMenu/DBImport/@Text}"/>
+               <igRibbon:ButtonTool x:Name="rbtDBExport"   Click="rbtDBExport_Click"   LargeImage="Images\32x32\Export_Large.png" Caption="{Binding XPath=MainWindow/ApplicationMenu/DBExport/@Text}"/>
+               <igRibbon:SeparatorTool/>
+               <igRibbon:ButtonTool x:Name="rbtDBOpen"  Click="rbtDBOpen_Click"  LargeImage="Images\32x32\Open_Large.png"  Caption="{Binding XPath=MainWindow/ApplicationMenu/DBOpen/@Text}"/>
+               <igRibbon:ButtonTool x:Name="rbtDBSave"  Click="rbtDBSave_Click"  LargeImage="Images\32x32\Save_Large.png"  Caption="{Binding XPath=MainWindow/ApplicationMenu/DBSave/@Text}"/>
+               <igRibbon:ButtonTool x:Name="rbtDBClose" Click="rbtDBClose_Click" LargeImage="Images\32x32\Close_Large.png" Caption="{Binding XPath=MainWindow/ApplicationMenu/DBClose/@Text}"/>
+               <igRibbon:SeparatorTool/>
+               <igRibbon:MenuTool x:Name="rmtLanguage" ButtonType="DropDown" LargeImage="Images\32x32\europe.png" Caption="{Binding XPath=MainWindow/ApplicationMenu/LanguageSelection/@Text}">
+                  <igRibbon:LabelTool Caption="{Binding XPath=MainWindow/ApplicationMenu/LanguageSelection/@ToolTip}"/>
+               </igRibbon:MenuTool>
+               <igRibbon:SeparatorTool/>
+               <igRibbon:MenuTool x:Name="rmtOptions" ButtonType="DropDown" LargeImage="Images\32x32\Settings_Large.png" Caption="{Binding XPath=MainWindow/ApplicationMenu/Options/@Text}">
+                  <igRibbon:LabelTool Caption="{Binding XPath=MainWindow/ApplicationMenu/Options/@ToolTip}"/>
+                  <igRibbon:CheckBoxTool x:Name="rcbOptionUseTranslatedFields" Click="rcbOptionUseTranslatedFields_Click"/>
+                  <igRibbon:CheckBoxTool x:Name="rcbOptionUseForeignKeyLookup" Click="rcbOptionUseForeignKeyLookup_Click"/>
+                  <igRibbon:CheckBoxTool x:Name="rcbOptionUseTeamFilter"       Click="rcbOptionUseTeamFilter_Click"/>
+               </igRibbon:MenuTool>
+               <igRibbon:SeparatorTool/>
+               <igRibbon:ButtonTool x:Name="rbtExit" Click="rbtExit_Click" LargeImage="Images\32x32\Quit_Large.png" Caption="{Binding XPath=MainWindow/ApplicationMenu/Exit/@Text}"/>
+            </igRibbon:ApplicationMenu>
+         </igRibbon:XamRibbon.ApplicationMenu>
+         <igRibbon:XamRibbon.Tabs>
+            <igRibbon:RibbonTabItem Header="{Binding XPath=MainWindow/TabStart/@Text}">
+               <igRibbon:RibbonGroup Caption="{Binding XPath=MainWindow/TabStart/Databases/@Text}">
+                  <igRibbon:ToolHorizontalWrapPanel>
+                     <igRibbon:LabelTool       Caption="{Binding XPath=MainWindow/TabStart/Databases/SelectDatebase/@Text}"/>
+                     <igRibbon:ButtonTool      x:Name="cmdDBDelete"    Id="DBDelete"    Click="cmdDeleteDB_Click"  Caption="{Binding XPath=MainWindow/TabStart/Databases/DeleteDatebase/@Text}" Visibility="Collapsed"/>
+                     <igRibbon:ComboEditorTool x:Name="cboDBSelection" Id="DBSelection" SelectedItemChanged="cboDBSelection_SelectedItemChanged" MinDropDownWidth="200"/>
+                  </igRibbon:ToolHorizontalWrapPanel>
+               </igRibbon:RibbonGroup>
+               <igRibbon:RibbonGroup Caption="{Binding XPath=MainWindow/TabStart/Tables/@Text}">
+                  <igRibbon:ToolHorizontalWrapPanel>
+                     <igRibbon:LabelTool Caption="{Binding XPath=MainWindow/TabStart/Tables/SelectTable/@Text}"/>
+                     <igRibbon:ComboEditorTool x:Name="cboTableSelection" Id="TableSelection" SelectedItemChanged="cboTableSelection_SelectedItemChanged" MinDropDownWidth="200"/>
+                  </igRibbon:ToolHorizontalWrapPanel>
+                  <igRibbon:ToolHorizontalWrapPanel>
+                     <igRibbon:ButtonTool x:Name="rbtTableSelection_Sponsor"  Id="TableSelection_Sponsor"  Caption="{Binding XPath=MainWindow/TabStart/Tables/DYN_sponsor/@Text}" SmallImage="Images\16x16\Sponsor_Small.png" Click="rbtTableSelection_Click"/>
+                     <igRibbon:ButtonTool x:Name="rbtTableSelection_Objectif" Id="TableSelection_Objectif" Caption="{Binding XPath=MainWindow/TabStart/Tables/DYN_objectif/@Text}" SmallImage="Images\16x16\Objectif_Small.png" Click="rbtTableSelection_Click"/>
+                  </igRibbon:ToolHorizontalWrapPanel>
+                  <igRibbon:ToolHorizontalWrapPanel>
+                     <igRibbon:ButtonTool x:Name="rbtTableSelection_Team"    Id="TableSelection_Team"    Caption="{Binding XPath=MainWindow/TabStart/Tables/DYN_team/@Text}" SmallImage="Images\16x16\Team_Small.png" Click="rbtTableSelection_Click"/>
+                     <igRibbon:ButtonTool x:Name="rbtTableSelection_Cyclist" Id="TableSelection_Cyclist" Caption="{Binding XPath=MainWindow/TabStart/Tables/DYN_cyclist/@Text}" SmallImage="Images\16x16\Cyclists_Small.png" Click="rbtTableSelection_Click"/>
+                  </igRibbon:ToolHorizontalWrapPanel>
+                  <igRibbon:ToolHorizontalWrapPanel>
+                     <igRibbon:ButtonTool x:Name="rbtTableSelection_Race"    Id="TableSelection_Race"    Caption="{Binding XPath=MainWindow/TabStart/Tables/STA_race/@Text}" SmallImage="Images\16x16\Race_Small.png" Click="rbtTableSelection_Click"/>
+                     <igRibbon:ButtonTool x:Name="rbtTableSelection_Stage"   Id="TableSelection_Stage"   Caption="{Binding XPath=MainWindow/TabStart/Tables/STA_stage/@Text}" SmallImage="Images\16x16\Stage_Small.png" Click="rbtTableSelection_Click"/>
+                  </igRibbon:ToolHorizontalWrapPanel>
+               </igRibbon:RibbonGroup>
+               <igRibbon:RibbonGroup Caption="{Binding XPath=MainWindow/TabStart/Filter/@Text}">
+                  <igRibbon:ToolHorizontalWrapPanel>
+                     <igRibbon:CheckBoxTool x:Name="cbtOptionUseTeamFilter" Id="OptionUseTeamFilter" Caption="{Binding XPath=MainWindow/ApplicationMenu/Options/UseTeamFilter/@Text}" Click="cbtOptionUseTeamFilter_Click"/>
+                     <igRibbon:ButtonGroup>
+                        <igRibbon:ComboEditorTool x:Name="cboFilterColumn" Id="FilterColumn" MinDropDownWidth="200"/>
+                        <igRibbon:ComboEditorTool x:Name="cboFilterType"   Id="FilterType" MinWidth="60"  MaxWidth="60" MaxDropDownWidth="63" MinDropDownWidth="63" SelectedIndex="0">
+                           <igRibbon:ComboEditorTool.ItemsProvider>
+                              <igEditors:ComboBoxItemsProvider>
+                                 <igEditors:ComboBoxItemsProvider.Items>
+                                    <igEditors:ComboBoxDataItem DisplayText="=" Value="1"/>
+                                    <igEditors:ComboBoxDataItem DisplayText="&lt;" Value="2"/>
+                                    <igEditors:ComboBoxDataItem DisplayText="&lt;=" Value="3"/>
+                                    <igEditors:ComboBoxDataItem DisplayText="&gt;" Value="4"/>
+                                    <igEditors:ComboBoxDataItem DisplayText="&gt;=" Value="5"/>
+                                    <igEditors:ComboBoxDataItem DisplayText="Like" Value="6"/>
+                                    <igEditors:ComboBoxDataItem DisplayText="Contains" Value="7"/>
+                                 </igEditors:ComboBoxItemsProvider.Items>
+                              </igEditors:ComboBoxItemsProvider>
+                           </igRibbon:ComboEditorTool.ItemsProvider>
+                        </igRibbon:ComboEditorTool>
+                        <igRibbon:TextEditorTool  x:Name="txtFilterValue"  Id="FilterValue" KeyUp="txtFilterValue_KeyUp">
+                           <igEditors:XamTextEditor.Resources>
+                              <Style TargetType="{x:Type TextBox}">
+                                 <Setter Property="AcceptsReturn" Value="True"/>
+                              </Style>
+                           </igEditors:XamTextEditor.Resources>
+                        </igRibbon:TextEditorTool>
+                        <igRibbon:ButtonTool      x:Name="rbtFilterApply"  Id="FilterApply"  Caption="{Binding XPath=MainWindow/TabStart/Filter/Apply/@Text}" Click="rbtFilterApply_Click"/>
+                        <igRibbon:ButtonTool      x:Name="rbtFilterClear"  Id="FilterClear"  Caption="{Binding XPath=MainWindow/TabStart/Filter/Clear/@Text}" Click="rbtFilterClear_Click"/>
+                     </igRibbon:ButtonGroup>
+                  </igRibbon:ToolHorizontalWrapPanel>
+               </igRibbon:RibbonGroup>
+               <igRibbon:RibbonGroup Caption="{Binding XPath=MainWindow/TabStart/MassEdit/@Text}">
+                  <igRibbon:ToolHorizontalWrapPanel>
+                     <igRibbon:ComboEditorTool x:Name="cboMassEditColumn"  Id="MassEditColumn" MinDropDownWidth="200"/>
+                     <igRibbon:ButtonGroup>
+                        <igRibbon:ComboEditorTool x:Name="cboMassEditType" Id="MassEditType" MinWidth="40"  MaxWidth="40" MaxDropDownWidth="43" MinDropDownWidth="43" SelectedIndex="0">
+                           <igRibbon:ComboEditorTool.ItemsProvider>
+                              <igEditors:ComboBoxItemsProvider>
+                                 <igEditors:ComboBoxItemsProvider.Items>
+                                    <igEditors:ComboBoxDataItem DisplayText="=" Value="1"/>
+                                    <igEditors:ComboBoxDataItem DisplayText="+" Value="2"/>
+                                    <igEditors:ComboBoxDataItem DisplayText="-" Value="3"/>
+                                    <igEditors:ComboBoxDataItem DisplayText="+ %" Value="4"/>
+                                    <igEditors:ComboBoxDataItem DisplayText="- %" Value="5"/>
+                                 </igEditors:ComboBoxItemsProvider.Items>
+                              </igEditors:ComboBoxItemsProvider>
+                           </igRibbon:ComboEditorTool.ItemsProvider>
+                        </igRibbon:ComboEditorTool>
+                        <igRibbon:TextEditorTool  x:Name="txtMassEditValue"  Id="MassEditValue" KeyUp="txtMassEditValue_KeyUp">
+                           <igEditors:XamTextEditor.Resources>
+                              <Style TargetType="{x:Type TextBox}">
+                                 <Setter Property="AcceptsReturn" Value="True"/>
+                              </Style>
+                           </igEditors:XamTextEditor.Resources>
+                        </igRibbon:TextEditorTool>
+                     </igRibbon:ButtonGroup>
+                  </igRibbon:ToolHorizontalWrapPanel>
+                  <igRibbon:ToolHorizontalWrapPanel>
+                     <igRibbon:ButtonTool      x:Name="rbtMassEditApply"  Id="MassEditApply"  Caption="{Binding XPath=MainWindow/TabStart/MassEdit/Apply/@Text}" Click="rbtMassEditApply_Click"/>
+                     <igRibbon:ButtonTool      x:Name="rbtMassEditClear"  Id="MassEditClear"  Caption="{Binding XPath=MainWindow/TabStart/MassEdit/Clear/@Text}" Click="rbtMassEditClear_Click"/>
+                  </igRibbon:ToolHorizontalWrapPanel>
+               </igRibbon:RibbonGroup>
+               <igRibbon:RibbonGroup Caption="{Binding XPath=MainWindow/TabStart/Layout/@Text}">
+                  <igRibbon:ToolHorizontalWrapPanel>
+                     <igRibbon:ButtonTool x:Name="cmdTableLayoutDef"      Id="TableLayoutDef"      Caption="{Binding XPath=MainWindow/TabStart/Layout/DefineLayout/@Text}" Click="cmdTableLayoutDef_Click"/>
+                     <igRibbon:ButtonTool x:Name="rbtLayoutResetSize"     Id="LayoutResetSize"     Caption="{Binding XPath=MainWindow/TabStart/Layout/ResetSize/@Text}" Click="rbtLayoutReset_Click"/>
+                  </igRibbon:ToolHorizontalWrapPanel>
+                  <igRibbon:ToolHorizontalWrapPanel>
+                     <igRibbon:ButtonTool x:Name="rbtLayoutResetPosition" Id="LayoutResetPosition" Caption="{Binding XPath=MainWindow/TabStart/Layout/ResetPosition/@Text}" Click="rbtLayoutReset_Click"/>
+                     <igRibbon:ButtonTool x:Name="rbtLayoutResetSorting"  Id="LayoutResetSorting"  Caption="{Binding XPath=MainWindow/TabStart/Layout/ResetSorting/@Text}" Click="rbtLayoutReset_Click"/>
+                  </igRibbon:ToolHorizontalWrapPanel>
+               </igRibbon:RibbonGroup>
+               <igRibbon:RibbonGroup Caption="{Binding XPath=MainWindow/ApplicationMenu/Options/@Text}">
+                  <igRibbon:ToolVerticalWrapPanel>
+                     <igRibbon:CheckBoxTool x:Name="cbtOptionUseTranslatedFields" Id="OptionUseTranslatedFields" Caption="{Binding XPath=MainWindow/ApplicationMenu/Options/UseTranslatedFields/@Text}" Click="cbtOptionUseTranslatedFields_Click" />
+                     <igRibbon:CheckBoxTool x:Name="cbtOptionUseForeignKeyLookup" Id="OptionUseForeignKeyLookup" Caption="{Binding XPath=MainWindow/ApplicationMenu/Options/UseForeignKeyLookup/@Text}" Click="cbtOptionUseForeignKeyLookup_Click" />
+                  </igRibbon:ToolVerticalWrapPanel>
+               </igRibbon:RibbonGroup>
+            </igRibbon:RibbonTabItem>
+         </igRibbon:XamRibbon.Tabs>
+      </igRibbon:XamRibbon>
+      <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+   </Grid>
+</Window>

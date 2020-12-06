@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+  <LachisEditor>
+     <MainWindow Text="Lachi's Editor">
+        <ApplicationMenu>
+           <DBImport Text="Pakke ut cdb"/>
+           <DBExport Text="Eksportere til cdb"/>
+           <DBOpen Text="&#197;pne database"/>
+           <DBSave Text="Lagre database"/>
+           <DBClose Text="Close database"/>
+           <LanguageSelection Text="Spr&#229;k" ToolTip="Endre spr&#229;k"/>
+           <Options Text="Alternativ" ToolTip="Generelle alternativ">
+              <UseTranslatedFields Text="Bruk kolonne oversettelse"/>
+              <UseForeignKeyLookup Text="Bruk tabell oppslag"/>
+              <UseTeamFilter Text="Bruk lag filter"/>
+           </Options>
+           <Exit Text="Avslutt"/>
+        </ApplicationMenu>
+        <TabStart Text="Start">
+           <Databases Text="Databaser">
+              <SelectDatebase Text="Velg en database"/>
+              <DeleteDatebase Text="Slett en database"/>
+           </Databases>
+           <Tables Text="Tabeller">
+              <SelectTable Text="Velg tabell"/>
+              <DYN_manager Text="Hovedtrener"/>
+              <DYN_sponsor Text="Sponsor"/>
+              <DYN_objectif Text="Sponsor m&#229;l"/>
+              <DYN_team Text="Lag"/>
+              <DYN_cyclist Text="Syklister"/>
+              <STA_race Text="Ritt"/>
+              <STA_stage Text="Etapper"/>
+           </Tables>
+           <Filter Text="Filter">
+              <Apply Text="Tilf&#248;ye"/>
+              <Clear Text="Fjern"/>
+           </Filter>
+           <MassEdit Text="Redigere flere">
+              <Apply Text="Tilf&#248;ye"/>
+              <Clear Text="Fjern"/>
+           </MassEdit>
+           <Layout Text="Utseende">
+              <DefineLayout Text="Definere tabell oppsett"/>
+              <ResetPosition Text="Tilbakestille kolonne posisjon"/>
+              <ResetSorting Text="Tilbakestille sortering/gruppering"/>
+              <ResetSize Text="Tilbakestille kolonne st&#248;rrelse"/>
+           </Layout>
+           <LayoutSubsets Text="Planl&#248;sning undergrupper">
+              <Layout0 Text="Ingen planl&#248;sning"/>
+              <Layout1 Text="Planl&#248;sning 1"/>
+              <Layout2 Text="Planl&#248;sning 2"/>
+           </LayoutSubsets>
+        </TabStart>
+        <Messages>
+           <NoDataLoaded Text="Du beh&#248;ver &#229; &#229;pne en database eller pakke ut en."/>
+           <DatabaseLoadedAlready Text="Du har allerede &#229;pnet en database."/>
+           <NoRecentDatabase Text="V&#230;r vennlig &#229; pakke ut en database."/>
+           <LoadingWaiting Text="V&#230;r vennlig &#229; vent til dataene har blitt lastet."/>
+           <SecurityCheckUnsavedData Text="Vil du lagre f&#248;r databasen stenges?"/>
+           <FileNameInvalid Text="Feil fil navn. Vennligst fjern alle mellomrom i filnavnet."/>
+           <MassEditWarning Text="Advarsel, endringene kan ikke tilbakestilles.\r\nDu kan lagre f&#248;r, om du beh&#248;ver.\r\n\r\nBruk filteret hvis du ikke &#248;nsker å endre alle radene."/>
+        </Messages>
+     </MainWindow>
+     <LayoutDefinition Text="Definisjon av planl&#248;sning">
+        <Buttons>
+           <MoveUp Text="Flytt opp"/>
+           <MoveUp5 Text="Flytt 5 opp"/>
+           <MoveUp10 Text="Flytt 10 opp"/>
+           <MoveDown Text="Flytt ned"/>
+           <MoveDown5 Text="Flytt 5 ned"/>
+           <MoveDown10 Text="Flytt 10 ned"/>
+           <MoveFirst Text="Flytt til toppen"/>
+           <MoveLast Text="Flytt til slutten"/>
+           <Cancel Text="Avbryt"/>
+           <Apply Text="Tilf&#248;y"/>
+        </Buttons>
+        <Columns>
+           <FieldName Text="Kolonne navn"/>
+           <Width Text="Bredde"/>
+           <Column Text="Kolonne"/>
+           <LayoutGroups Text="Undergrupper"/>
+        </Columns>
+     </LayoutDefinition>
+     <DBLoader>
+        <LoadDatabaseNoData Text="Feil ved &#229;pning av database, v&#230;r vennlig &#229; pakk ut p&#229; nytt."/>
+        <DeleteFitnessProgram Text="Noen trenings program finnes allerede.\r\nVil du slette disse f&#248;r nye blir lagd?\r\nAdvarsel: Trenings program kan bli overskrevet under opprettelse av nye."/>
+        <ExtractDB_NumberInvalid Text="Det er en feil i tabell  {0}  i raden  {1} = {2}.\r\nVerdien i kolonnen  {3}  har blitt satt tilbake til 0.\r\nDen korrupte verdien var {4}\r\n\r\nDu m&#229; sjekke og endre dataen i denne raden."/>
+     </DBLoader>
+
+     <DYN_cyclist>
+        <gene_sz_lastname Text="Etternavn"/>
+        <gene_sz_firstname Text="Fornavn"/>
+        <value_f_current_evaluation Text="AVG"/>
+     </DYN_cyclist>
+     <STA_race>
+        <gene_sz_race_name Text="Ritt"/>
+     </STA_race>
+     <STA_stage>
+        <gene_sz_stage_name Text="Ritt navn"/>
+     </STA_stage>
+  </LachisEditor>
