@@ -54,8 +54,16 @@
     <ApplicationIcon>Star.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Syncfusion.Data.WPF, Version=19.2400.0.46, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>..\packages\Syncfusion.Data.WPF.19.2.0.46\lib\net40\Syncfusion.Data.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Syncfusion.Licensing, Version=19.2400.0.46, Culture=neutral, PublicKeyToken=632609b4d040f6b4">
       <HintPath>..\packages\Syncfusion.Licensing.19.2.0.46\lib\net40\Syncfusion.Licensing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.SfGrid.WPF, Version=19.2400.0.46, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>..\packages\Syncfusion.SfGrid.WPF.19.2.0.46\lib\net40\Syncfusion.SfGrid.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Syncfusion.Shared.Wpf, Version=19.2400.0.46, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
