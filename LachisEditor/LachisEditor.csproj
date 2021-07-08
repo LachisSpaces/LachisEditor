@@ -54,22 +54,6 @@
     <ApplicationIcon>Star.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InfragisticsWPF4.DataPresenter.v13.1, Version=13.1.20131.2406, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage 2013.1\WPF\CLR4.0\Bin\WPFOnly\InfragisticsWPF4.DataPresenter.v13.1.dll</HintPath>
-    </Reference>
-    <Reference Include="InfragisticsWPF4.Editors.v13.1, Version=13.1.20131.2406, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage 2013.1\WPF\CLR4.0\Bin\WPFOnly\InfragisticsWPF4.Editors.v13.1.dll</HintPath>
-    </Reference>
-    <Reference Include="InfragisticsWPF4.Ribbon.v13.1, Version=13.1.20131.2406, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage 2013.1\WPF\CLR4.0\Bin\WPFOnly\InfragisticsWPF4.Ribbon.v13.1.dll</HintPath>
-    </Reference>
-    <Reference Include="InfragisticsWPF4.v13.1, Version=13.1.20131.2406, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage 2013.1\WPF\CLR4.0\Bin\WPFOnly\InfragisticsWPF4.v13.1.dll</HintPath>
-    </Reference>
     <Reference Include="Syncfusion.Licensing, Version=19.2400.0.46, Culture=neutral, PublicKeyToken=632609b4d040f6b4">
       <HintPath>..\packages\Syncfusion.Licensing.19.2.0.46\lib\net40\Syncfusion.Licensing.dll</HintPath>
       <Private>True</Private>
