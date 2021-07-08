@@ -1,7 +1,4 @@
-﻿using Infragistics.Windows.Editors;
-using Infragistics.Windows.Ribbon;
-using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Collections;
@@ -78,7 +75,9 @@ namespace LachisEditor
       }
 
 
-      public static void Databases_FillList(ComboEditorTool cbo, bool blnSelectActiveDatabase)
+      //TODO: Replace ComboEditor Tool
+      //TODO: Replace ComboBoxItemsProvider
+      public static void Databases_FillList(/*ComboEditorTool cbo,*/ bool blnSelectActiveDatabase)
       {
          if (_Databases.Count == 0)
          {
@@ -102,45 +101,47 @@ namespace LachisEditor
                }
             }
          }
-         ComboBoxItemsProvider provider = new ComboBoxItemsProvider();
+         /*ComboBoxItemsProvider provider = new ComboBoxItemsProvider();
          foreach (DatabaseInfo dbi in _Databases)
             provider.Items.Add(new ComboBoxDataItem(dbi.Name, dbi.Name));
          cbo.ValueType = typeof(string);
          cbo.ItemsProvider = provider;
          if (blnSelectActiveDatabase)
-            cbo.Value = _ActualDatabase.Name;
+            cbo.Value = _ActualDatabase.Name;*/
       }
 
 
-      public static void Tables_FillList(ComboEditorTool cbo)
+      //TODO: Replace ComboEditor Tool
+      public static void Tables_FillList(/*ComboEditorTool cbo*/)
       {
-         cbo.Value = null;
+         /*cbo.Value = null;
          ComboBoxItemsProvider provider = new ComboBoxItemsProvider();
          foreach (DBTable t in _dsCyanideDB.Tables)
             if (t != null && t.TableName != Const.CountryRegionTable)
                provider.Items.Add(new ComboBoxDataItem(t.TableName, t.TableName));
          //provider.Items.SortDescriptions.Add(new SortDescription("DisplayText", ListSortDirection.Ascending));
          cbo.ValueType = typeof(string);
-         cbo.ItemsProvider = provider;
+         cbo.ItemsProvider = provider;*/
       }
 
 
-      public static void Columns_FillList(ComboEditorTool cbo, string strTable)
+      //TODO: Replace ComboEditor Tool
+      public static void Columns_FillList(/*ComboEditorTool cbo,*/ string strTable)
       {
-         cbo.Value = null;
+         /*cbo.Value = null;
          ComboBoxItemsProvider provider = new ComboBoxItemsProvider();
          foreach (DataColumn c in _dsCyanideDB.Tables[strTable].Columns)
             if (c.ColumnName != Const.ColumnName_IsHelpRow)
                provider.Items.Add(new ComboBoxDataItem(c.ColumnName, c.Caption));
          //provider.Items.SortDescriptions.Add(new SortDescription("DisplayText", ListSortDirection.Ascending));
          cbo.ValueType = typeof(string);
-         cbo.ItemsProvider = provider;
+         cbo.ItemsProvider = provider;*/
       }
 
-
-      public static void Columns_FillList(ComboEditorTool cbo, string strTable, bool blnNumericOnly)
+      //TODO: Replace ComboEditor Tool
+      public static void Columns_FillList(/*ComboEditorTool cbo,*/ string strTable, bool blnNumericOnly)
       {
-         cbo.Value = null;
+         /*cbo.Value = null;
          ComboBoxItemsProvider provider = new ComboBoxItemsProvider();
          foreach (DataColumn c in _dsCyanideDB.Tables[strTable].Columns)
          {
@@ -156,7 +157,7 @@ namespace LachisEditor
          }
          //provider.Items.SortDescriptions.Add(new SortDescription("DisplayText", ListSortDirection.Ascending));
          cbo.ValueType = typeof(string);
-         cbo.ItemsProvider = provider;
+         cbo.ItemsProvider = provider;*/
       }
 
 
