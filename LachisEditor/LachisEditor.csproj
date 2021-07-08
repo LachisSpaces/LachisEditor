@@ -70,6 +70,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage 2013.1\WPF\CLR4.0\Bin\WPFOnly\InfragisticsWPF4.v13.1.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=19.2400.0.46, Culture=neutral, PublicKeyToken=632609b4d040f6b4">
+      <HintPath>..\packages\Syncfusion.Licensing.19.2.0.46\lib\net40\Syncfusion.Licensing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Wpf, Version=19.2400.0.46, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.19.2.0.46\lib\net40\Syncfusion.Shared.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Tools.Wpf, Version=19.2400.0.46, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>..\packages\Syncfusion.Tools.WPF.19.2.0.46\lib\net40\Syncfusion.Tools.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -144,6 +156,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
