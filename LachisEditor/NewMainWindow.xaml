@@ -3,10 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:LachisEditor"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         mc:Ignorable="d"
         Title="NewMainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0"
+                Content="Load Database"
+                Width="160"
+                HorizontalAlignment="Left"
+                Margin="2"
+                Click="ButtonBase_OnClick"/>
+        <syncfusion:SfDataGrid Grid.Row="1"
+                               x:Name="MainGrid"
+                               VerticalAlignment="Stretch" />
+
     </Grid>
 </Window>
