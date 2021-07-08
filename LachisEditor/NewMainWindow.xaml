@@ -18,7 +18,7 @@
                 Margin="2"
                 Click="ButtonBase_OnClick"/>
         <syncfusion:SfDataGrid Grid.Row="1"
-                               x:Name="MainGrid"
+                               x:Name="MainDataGrid"
                                VerticalAlignment="Stretch" />
 
     </Grid>
