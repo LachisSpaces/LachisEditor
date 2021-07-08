@@ -4,7 +4,7 @@
              xmlns:appl="clr-namespace:LachisEditor"
              xmlns:local="clr-namespace:LachisEditor"
              DispatcherUnhandledException="App_DispatcherUnhandledException"
-             StartupUri="MainWindow.xaml">
+             StartupUri="NewMainWindow.xaml">
     <Application.Resources>
       <XmlDataProvider x:Key="Lang" XPath="LachisEditor"/>
    </Application.Resources>

@@ -101,12 +101,16 @@
     <Compile Include="DBClasses\ForeignKey.cs" />
     <Compile Include="Interfaces\IProgressOperation.cs" />
     <Compile Include="Languages\LanguageOptions.cs" />
+    <Page Include="NewMainWindow.xaml" />
     <Page Include="ProgressWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewMainWindow.xaml.cs">
+      <DependentUpon>NewMainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
     </Compile>
