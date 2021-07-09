@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Xml;
 using LachisEditor.Annotations;
+using LachisEditor.Models;
 using Microsoft.Win32;
 using Syncfusion.Data.Extensions;
 using ioPath = System.IO.Path;
@@ -28,6 +29,7 @@ namespace LachisEditor
         }
 
         ObservableCollection<string> _existingTables;
+        ObservableCollection<Team> _existingTeams;
 
         public ObservableCollection<string> ExistingTables
         {
@@ -36,6 +38,16 @@ namespace LachisEditor
             {
                 _existingTables = value;
                 OnPropertyChanged(nameof(ExistingTables));
+            }
+        }
+
+        public ObservableCollection<Team> ExistingTeams
+        {
+            get => _existingTeams;
+            set
+            {
+                _existingTeams = value;
+                OnPropertyChanged(nameof(ExistingTeams));
             }
         }
 
@@ -110,6 +122,7 @@ namespace LachisEditor
                         //DBLoader.Databases_FillList(this.cboDBSelection, true);
                         //DBLoader.Tables_FillList(this.cboTableSelection);
                         ExistingTables = new ObservableCollection<string>(DBLoader.GetExistingTables());
+                        ExistingTeams = new ObservableCollection<Team>(DBLoader.GetExistingTeams());
 
                         MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
                         _blnCodeIsRunning = false;

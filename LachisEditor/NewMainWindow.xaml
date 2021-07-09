@@ -44,7 +44,7 @@
                     <sf:ComboBoxAdv x:Name="CboTableSelection" MinWidth="80"
                                     ItemsSource="{Binding ExistingTables}"/>
                 </sf:RibbonBar>
-                <sf:RibbonBar Header="Mass editing">
+                <sf:RibbonBar Header="Mass editing" IsPanelStateCollapsed="False">
                     <StackPanel Orientation="Horizontal">
                         <sf:RibbonComboBox x:Name="MassEditValueCombobox"
                                            MinWidth="120" />
@@ -63,14 +63,16 @@
                         <sf:RibbonButton x:Name="MassEditClearButton" Label="Clear" />
                     </StackPanel>
                 </sf:RibbonBar>
-                <sf:RibbonBar Header="Options" >
+                <sf:RibbonBar Header="Options" IsPanelStateCollapsed="False">
                     <sf:RibbonCheckBox x:Name="UseLookupCheckBox" 
                                        Content="Use Lookups"/>
                     <sf:RibbonCheckBox x:Name="UseColumnTranslationCheckBox" 
                                        Content="Use Column Translation"/>
                     <StackPanel Orientation="Horizontal">
                         <sf:ComboBoxAdv x:Name="CboTeamFilter" 
-                                        MinWidth="80"/>
+                                        MinWidth="80"
+                                        ItemsSource="{Binding ExistingTeams}"
+                                        DisplayMemberPath="TeamFullName"/>
                         <sf:RibbonCheckBox x:Name="CboxUseTeamFilter" Content="Use Team Filter"
                                            IsChecked="{Binding UseTeamFilter}" /></StackPanel>
                 </sf:RibbonBar>
