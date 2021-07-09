@@ -1,23 +1,22 @@
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Xml;
 using LachisEditor.Annotations;
 using LachisEditor.Models;
 using Microsoft.Win32;
-using Syncfusion.Data.Extensions;
 using Syncfusion.Windows.Tools.Controls;
 using ioPath = System.IO.Path;
 
 namespace LachisEditor
 {
-    public partial class NewMainWindow : INotifyPropertyChanged
+    public sealed partial class NewMainWindow : INotifyPropertyChanged
     {
+        #region Members
+
         string _strInitialDirectoryFolder;
-        bool _blnCodeIsRunning = false;
+        bool _blnCodeIsRunning;
         bool _useTeamFilter;
 
         public bool UseTeamFilter
@@ -53,6 +52,10 @@ namespace LachisEditor
             }
         }
 
+        #endregion
+
+        #region Constructor and Initalization
+
         public NewMainWindow()
         {
             InitializeComponent();
@@ -67,6 +70,10 @@ namespace LachisEditor
             // this.cbtOptionUseTeamFilter.IsChecked = (bool)App.Current.Properties[Const.OptionsUseTeamFilter];
             //DBLoader.Databases_FillList(this.cboDBSelection, false);
         }
+
+        #endregion
+
+        #region Language Settings
 
         private void SetLanguage(string strLanguage)
         {
@@ -96,39 +103,9 @@ namespace LachisEditor
             }*/
         }
 
-        void LoadDatabaseButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (this.SecurityCheckUnsavedData(true))
-            {
-                string strPath = "";
-                OpenFileDialog dlg = new OpenFileDialog();
-                dlg.Filter = "*.cdb (cyanide database)|*.cdb";
-                if (!System.IO.Directory.Exists(_strInitialDirectoryFolder))
-                    _strInitialDirectoryFolder = "";
-                dlg.InitialDirectory = _strInitialDirectoryFolder;
-                if ((bool) dlg.ShowDialog())
-                    strPath = dlg.FileName;
-                if (!string.IsNullOrEmpty(strPath))
-                {
-                    //if (ioPath.GetFileName(strPath).Contains(" "))
-                    //   LanguageOptions.ShowMessage("MainWindow/Messages/FileNameInvalid", MessageBoxButton.OK);
-                    //else
-                    {
-                        _strInitialDirectoryFolder = ioPath.GetDirectoryName(strPath);
-                        this.StartLongJob("ImportDatabase", strPath);
-                        _blnCodeIsRunning = true;
+        #endregion
 
-                        //DBLoader.Databases_FillList(this.cboDBSelection, true);
-                        //DBLoader.Tables_FillList(this.cboTableSelection);
-                        ExistingTables = new ObservableCollection<string>(DBLoader.GetExistingTables());
-                        ExistingTeams = new ObservableCollection<Team>(DBLoader.GetExistingTeams());
-
-                        MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
-                        _blnCodeIsRunning = false;
-                    }
-                }
-            }
-        }
+        #region Saving Data
 
         bool SecurityCheckUnsavedData(bool blnCloseTable)
         {
@@ -171,6 +148,10 @@ namespace LachisEditor
             // return true;
         }
 
+        #endregion
+
+        #region Job Handling
+
         private void StartLongJob(string strJob, string strValue)
         {
             _blnCodeIsRunning = true;
@@ -180,19 +161,59 @@ namespace LachisEditor
             w = null;
         }
 
+        #endregion
+
+        #region Interface Implemantations
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged(string propertyName)
+        void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        #endregion
+
         #region Button ClickHandlers
 
-        //TODO: Using the Command-Pattern would be a better solution
+        void LoadDatabaseButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (this.SecurityCheckUnsavedData(true))
+            {
+                string path = "";
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.Filter = "*.cdb (cyanide database)|*.cdb";
+                if (!System.IO.Directory.Exists(_strInitialDirectoryFolder))
+                    _strInitialDirectoryFolder = "";
+                dlg.InitialDirectory = _strInitialDirectoryFolder;
+                if ((bool)dlg.ShowDialog())
+                    path = dlg.FileName;
+                if (!string.IsNullOrEmpty(path))
+                {
+                    //if (ioPath.GetFileName(strPath).Contains(" "))
+                    //   LanguageOptions.ShowMessage("MainWindow/Messages/FileNameInvalid", MessageBoxButton.OK);
+                    //else
+                    {
+                        _strInitialDirectoryFolder = ioPath.GetDirectoryName(path);
+                        this.StartLongJob("ImportDatabase", path);
+                        _blnCodeIsRunning = true;
 
+                        //DBLoader.Databases_FillList(this.cboDBSelection, true);
+                        //DBLoader.Tables_FillList(this.cboTableSelection);
+                        ExistingTables = new ObservableCollection<string>(DBLoader.GetExistingTables());
+                        ExistingTeams = new ObservableCollection<Team>(DBLoader.GetExistingTeams());
+
+                        MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
+                        _blnCodeIsRunning = false;
+                    }
+                }
+            }
+        }
+
+        #region Filter Button Handlers
+
+        //TODO: Using the Command-Pattern would be a better solution
         bool CanExecuteFilterCommand()
         {
             if (_blnCodeIsRunning) return false;
@@ -255,9 +276,11 @@ namespace LachisEditor
             if (tableSelectionComboBox == null) return;
             if (string.IsNullOrEmpty(tableSelectionComboBox.SelectedValue.ToString())) return;
 
-                MainDataGrid.ItemsSource =
-                    DBLoader.GetDataView(tableSelectionComboBox.SelectedValue.ToString(), UseTeamFilter);
+            MainDataGrid.ItemsSource =
+                DBLoader.GetDataView(tableSelectionComboBox.SelectedValue.ToString(), UseTeamFilter);
         }
+
+        #endregion
 
         #endregion
     }
