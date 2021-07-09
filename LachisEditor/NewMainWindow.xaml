@@ -33,7 +33,8 @@
                                      Click="LoadDatabaseButton_OnClick" />
                 </sf:RibbonBar>
                 <sf:RibbonBar Name="TablesRibbonBar" Width="Auto" Header="Tables">
-                    <sf:RibbonButton x:Name="SponsorsTableButton" Label="Sponsors" />
+                    <sf:RibbonButton x:Name="SponsorsTableButton" Label="Sponsors" 
+                                     Click="SponsorsTableButton_OnClick"/>
                     <sf:RibbonButton x:Name="TeamsTableButton" Label="Teams" />
                     <sf:RibbonButton x:Name="RacesTableButton" Label="Races" />
                     <sf:RibbonButton x:Name="SponsorGoalsTableButton" Label="Sponsor Goals" />

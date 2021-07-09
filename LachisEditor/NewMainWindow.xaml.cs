@@ -105,5 +105,18 @@ namespace LachisEditor
             _blnCodeIsRunning = false;
             w = null;
         }
+
+        void SponsorsTableButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_blnCodeIsRunning) return;
+            if (!DBLoader.DataIsLoaded)
+            {
+                //BUG: Here occurs an error if no data is loaded
+                LanguageOptions.ShowMessage("MainWindow/Messages/NoDataLoaded", MessageBoxButton.OK);
+                return;
+            }
+            
+            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_sponsor", false);
+        }
     }
 }
