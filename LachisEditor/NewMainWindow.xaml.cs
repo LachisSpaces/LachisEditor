@@ -181,17 +181,7 @@ namespace LachisEditor
             w = null;
         }
 
-        void SponsorsTableButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (_blnCodeIsRunning) return;
-            if (!DBLoader.DataIsLoaded)
-            {
-                LanguageOptions.ShowMessage("MainWindow/Messages/NoDataLoaded", MessageBoxButton.OK);
-                return;
-            }
-            
-            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_sponsor", UseTeamFilter);
-        }
+      
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -200,5 +190,37 @@ namespace LachisEditor
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #region Button ClickHandlers
+            //TODO: Using the Command-Pattern would be a better solution
+        void TeamsTableButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!CanExecuteFilterCommand()) return;
+
+            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_team", UseTeamFilter);
+        }
+
+        void SponsorsTableButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!CanExecuteFilterCommand()) return;
+            
+            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_sponsor", UseTeamFilter);
+        }
+        
+        bool CanExecuteFilterCommand()
+        {
+            if (_blnCodeIsRunning) return false;
+            if (!DBLoader.DataIsLoaded)
+            {
+                LanguageOptions.ShowMessage("MainWindow/Messages/NoDataLoaded", MessageBoxButton.OK);
+                return false;
+            }
+
+            return true;
+        }
+
+
+
+        #endregion
     }
 }
