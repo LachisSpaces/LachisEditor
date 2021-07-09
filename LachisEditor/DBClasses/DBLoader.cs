@@ -9,6 +9,7 @@ using System.Data;
 using System.Xml;
 using System.IO;
 using System;
+using LachisEditor.Models;
 using Syncfusion.Windows.Tools.Controls;
 
 namespace LachisEditor
@@ -858,6 +859,23 @@ namespace LachisEditor
             sw.Write(msg.ToString());
             sw.Close();
             sw.Dispose();
+        }
+
+        public static List<Team> GetExistingTeams()
+        {
+            var result = new List<Team>();
+            var teamTable = _dsCyanideDB.Tables["DYN_team"];
+            foreach (DataRow dr in teamTable.Rows)
+            {
+                var team = new Team()
+                {
+                    TeamId = dr["IDteam"].ToString(),
+                    TeamFullName = dr["gene_sz_name"].ToString()
+                };
+                result.Add(team);
+            }
+
+            return result;
         }
     }
 

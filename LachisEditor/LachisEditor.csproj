@@ -107,6 +107,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DBClasses\ForeignKey.cs" />
+    <Compile Include="DBClasses\Models\Team.cs" />
     <Compile Include="Interfaces\IProgressOperation.cs" />
     <Compile Include="Languages\LanguageOptions.cs" />
     <Page Include="NewMainWindow.xaml" />
