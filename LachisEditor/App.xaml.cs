@@ -13,6 +13,9 @@ namespace LachisEditor
       protected override void OnStartup(StartupEventArgs e)
       {
          base.OnStartup(e);
+
+         Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(
+            "NDcxMTA0QDMxMzkyZTMyMmUzMFFJUkZCcTErL2ZMSng1dm5QSHoxUlRmK0htRStpQ0NucHlWR3A2Yk1xTU09;NDcxMTA1QDMxMzkyZTMyMmUzMFFJb3VRZEdtazhUelpkWW5UaXdpS28zMnExR2FybTVtaW5QZTdKcEtsRVU9");
       }
 
       void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
