@@ -1,10 +1,11 @@
 using System.Windows;
 using Microsoft.Win32;
+using Syncfusion.Data.Extensions;
 using ioPath = System.IO.Path;
 
 namespace LachisEditor
 {
-    public partial class NewMainWindow : Window
+    public partial class NewMainWindow
     {
         string _strInitialDirectoryFolder;
         bool _blnCodeIsRunning = false;
