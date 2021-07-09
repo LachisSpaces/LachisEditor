@@ -6,7 +6,7 @@ using System;
 
 namespace LachisEditor
 {
-   class DBDataset : DataSet
+   public class DBDataset : DataSet
    {
 
       #region DECLARATION

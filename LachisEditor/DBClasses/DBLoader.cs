@@ -788,6 +788,12 @@ namespace LachisEditor
             }
         }
 
+        public static DBDataset DsCyanideDb
+        {
+            get => _dsCyanideDB;
+            set => _dsCyanideDB = value;
+        }
+
         public event EventHandler ProgressStatusChanged;
         public event EventHandler ProgressCurrentChanged;
         public event EventHandler ProgressMaximumChanged;

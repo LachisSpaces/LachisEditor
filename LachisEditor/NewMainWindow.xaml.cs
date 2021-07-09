@@ -11,6 +11,8 @@ using ioPath = System.IO.Path;
 
 namespace LachisEditor
 {
+    //TODO: Lookup Columns via: https://help.syncfusion.com/wpf/datagrid/column-types#gridmulticolumndropdownlist
+    
     public sealed partial class NewMainWindow : INotifyPropertyChanged
     {
         #region Members
@@ -204,7 +206,8 @@ namespace LachisEditor
                         ExistingTables = new ObservableCollection<string>(DBLoader.GetExistingTables());
                         ExistingTeams = new ObservableCollection<Team>(DBLoader.GetExistingTeams());
 
-                        MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
+                       // MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
+                       MainDataGrid.ItemsSource = DBLoader.DsCyanideDb.Tables["DYN_team"];
                         _blnCodeIsRunning = false;
                     }
                 }
