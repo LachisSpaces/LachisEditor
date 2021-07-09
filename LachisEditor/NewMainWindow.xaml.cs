@@ -1,17 +1,29 @@
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Xml;
+using LachisEditor.Annotations;
 using Microsoft.Win32;
 using Syncfusion.Data.Extensions;
 using ioPath = System.IO.Path;
 
 namespace LachisEditor
 {
-    public partial class NewMainWindow
+    public partial class NewMainWindow : INotifyPropertyChanged
     {
         string _strInitialDirectoryFolder;
         bool _blnCodeIsRunning = false;
-        readonly string _strRecentDatabase;
+        bool _useTeamFilter;
+
+        public bool UseTeamFilter
+        {
+            get => _useTeamFilter;
+            set
+            {
+                _useTeamFilter = value;
+                OnPropertyChanged(nameof(UseTeamFilter));
+            }
+        }
 
         public NewMainWindow()
         {
@@ -95,7 +107,7 @@ namespace LachisEditor
         void FillCboTableSelection()
         {
             // Fill Table Selection ComboBox
-            DBLoader.Tables_FillList(cboTableSelection);
+            DBLoader.Tables_FillList(CboTableSelection);
         }
 
         bool SecurityCheckUnsavedData(bool blnCloseTable)
@@ -159,6 +171,14 @@ namespace LachisEditor
             }
             
             MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_sponsor", false);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

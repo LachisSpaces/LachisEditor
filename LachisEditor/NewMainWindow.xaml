@@ -5,8 +5,9 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:sf="http://schemas.syncfusion.com/wpf"
                  mc:Ignorable="d"
-                 Title="Lachis Editor" Height="450" Width="820"
+                 Title="Lachis Editor" Height="450" Width="860"
                  WindowStartupLocation="CenterScreen"
+                 DataContext="{Binding RelativeSource={RelativeSource Self}}"
                  Office2010Icon="Star.ico">
     
     <Window.Resources>
@@ -40,7 +41,7 @@
                     <sf:RibbonButton x:Name="SponsorGoalsTableButton" Label="Sponsor Goals" />
                     <sf:RibbonButton x:Name="CyclistsTableButton" Label="Cyclists" />
                     <sf:RibbonButton x:Name="StagesTableButton" Label="Stages" />
-                    <sf:ComboBoxAdv x:Name="cboTableSelection" MinWidth="80"/>
+                    <sf:ComboBoxAdv x:Name="CboTableSelection" MinWidth="80"/>
                 </sf:RibbonBar>
                 <sf:RibbonBar Header="Mass editing">
                     <StackPanel Orientation="Horizontal">
@@ -61,11 +62,16 @@
                         <sf:RibbonButton x:Name="MassEditClearButton" Label="Clear" />
                     </StackPanel>
                 </sf:RibbonBar>
-                <sf:RibbonBar Header="Options">
+                <sf:RibbonBar Header="Options" >
                     <sf:RibbonCheckBox x:Name="UseLookupCheckBox" 
                                        Content="Use Lookups"/>
                     <sf:RibbonCheckBox x:Name="UseColumnTranslationCheckBox" 
                                        Content="Use Column Translation"/>
+                    <StackPanel Orientation="Horizontal">
+                        <sf:ComboBoxAdv x:Name="CboTeamFilter" 
+                                        MinWidth="80"/>
+                        <sf:RibbonCheckBox x:Name="CboxUseTeamFilter" Content="Use Team Filter"
+                                           IsChecked="{Binding UseTeamFilter}" /></StackPanel>
                 </sf:RibbonBar>
             </sf:RibbonTab>
 
