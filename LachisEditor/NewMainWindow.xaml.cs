@@ -186,7 +186,6 @@ namespace LachisEditor
             if (_blnCodeIsRunning) return;
             if (!DBLoader.DataIsLoaded)
             {
-                //BUG: Here occurs an error if no data is loaded
                 LanguageOptions.ShowMessage("MainWindow/Messages/NoDataLoaded", MessageBoxButton.OK);
                 return;
             }
