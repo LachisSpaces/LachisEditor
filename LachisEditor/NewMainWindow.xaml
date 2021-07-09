@@ -41,7 +41,8 @@
                     <sf:RibbonButton x:Name="SponsorGoalsTableButton" Label="Sponsor Goals" />
                     <sf:RibbonButton x:Name="CyclistsTableButton" Label="Cyclists" />
                     <sf:RibbonButton x:Name="StagesTableButton" Label="Stages" />
-                    <sf:ComboBoxAdv x:Name="CboTableSelection" MinWidth="80"/>
+                    <sf:ComboBoxAdv x:Name="CboTableSelection" MinWidth="80"
+                                    ItemsSource="{Binding ExistingTables}"/>
                 </sf:RibbonBar>
                 <sf:RibbonBar Header="Mass editing">
                     <StackPanel Orientation="Horizontal">

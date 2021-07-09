@@ -121,6 +121,19 @@ namespace LachisEditor
             }
         }
 
+        public static List<string> GetExistingTables()
+        {
+            var result = new List<string>();
+            
+            foreach (DBTable t in _dsCyanideDB.Tables)
+            {
+                if (t != null && t.TableName != Const.CountryRegionTable)
+                    result.Add(t.TableName);
+            }
+
+            return result;
+        }
+
 
         //TODO: Replace ComboEditor Tool
         public static void Columns_FillList( /*ComboEditorTool cbo,*/ string strTable)

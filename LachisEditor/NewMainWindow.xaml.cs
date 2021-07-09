@@ -1,3 +1,5 @@
+using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
@@ -22,6 +24,18 @@ namespace LachisEditor
             {
                 _useTeamFilter = value;
                 OnPropertyChanged(nameof(UseTeamFilter));
+            }
+        }
+
+        ObservableCollection<string> _existingTables;
+
+        public ObservableCollection<string> ExistingTables
+        {
+            get => _existingTables;
+            set
+            {
+                _existingTables = value;
+                OnPropertyChanged(nameof(ExistingTables));
             }
         }
 
@@ -95,19 +109,13 @@ namespace LachisEditor
                         
                         //DBLoader.Databases_FillList(this.cboDBSelection, true);
                         //DBLoader.Tables_FillList(this.cboTableSelection);
-                        FillCboTableSelection();
+                        ExistingTables = new ObservableCollection<string>(DBLoader.GetExistingTables());
 
                         MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
                         _blnCodeIsRunning = false;
                     }
                 }
             }
-        }
-
-        void FillCboTableSelection()
-        {
-            // Fill Table Selection ComboBox
-            DBLoader.Tables_FillList(CboTableSelection);
         }
 
         bool SecurityCheckUnsavedData(bool blnCloseTable)
