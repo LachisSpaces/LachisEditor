@@ -13,7 +13,9 @@
     <Window.Resources>
         <Style TargetType="sf:GroupDropArea">
             <Setter Property="Height" Value="80" />        
-
+        </Style>
+        <Style TargetType="sf:RibbonBar">
+            <Setter Property="IsPanelStateCollapsed" Value="False"/>
         </Style>
     </Window.Resources>
     
@@ -22,18 +24,19 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <sf:Ribbon>
+        <sf:Ribbon >
             <sf:Ribbon.ApplicationMenu>
             <sf:ApplicationMenu Name="ApplicationMenu" Width="38" Height="38" IsPopupOpen="False" 
                                 ApplicationButtonImage="Star.ico">
             </sf:ApplicationMenu>
             </sf:Ribbon.ApplicationMenu>
             <sf:RibbonTab>
-                <sf:RibbonBar Name="DatabasesRibbonBar" Width="Auto" Header="Databases">
+                <sf:RibbonBar  Name="DatabasesRibbonBar" Width="Auto" Header="Databases">
                     <sf:RibbonButton Label="Load Database"
                                      Click="LoadDatabaseButton_OnClick" />
                 </sf:RibbonBar>
-                <sf:RibbonBar Name="TablesRibbonBar" Width="Auto" Header="Tables">
+                <sf:RibbonBar Name="TablesRibbonBar" MinWidth="240" Header="Tables"
+                              >
                     <sf:RibbonButton x:Name="SponsorsTableButton" Label="Sponsors" 
                                      Click="SponsorsTableButton_OnClick"/>
                     <sf:RibbonButton x:Name="TeamsTableButton" Label="Teams"
@@ -50,7 +53,7 @@
                                     ItemsSource="{Binding ExistingTables}"
                                     SelectionChanged="CboTableSelection_OnSelectionChanged"/>
                 </sf:RibbonBar>
-                <sf:RibbonBar Header="Mass editing" IsPanelStateCollapsed="False">
+                <sf:RibbonBar Header="Mass editing" >
                     <StackPanel Orientation="Horizontal">
                         <sf:RibbonComboBox x:Name="MassEditValueCombobox"
                                            MinWidth="120" />
@@ -69,7 +72,7 @@
                         <sf:RibbonButton x:Name="MassEditClearButton" Label="Clear" />
                     </StackPanel>
                 </sf:RibbonBar>
-                <sf:RibbonBar Header="Options" IsPanelStateCollapsed="False">
+                <sf:RibbonBar Header="Options" >
                     <sf:RibbonCheckBox x:Name="UseLookupCheckBox" 
                                        Content="Use Lookups"/>
                     <sf:RibbonCheckBox x:Name="UseColumnTranslationCheckBox" 
