@@ -30,7 +30,7 @@
             <sf:RibbonTab>
                 <sf:RibbonBar Name="DatabasesRibbonBar" Width="Auto" Header="Databases">
                     <sf:RibbonButton Label="Load Database"
-                                     Click="ButtonBase_OnClick" />
+                                     Click="LoadDatabaseButton_OnClick" />
                 </sf:RibbonBar>
                 <sf:RibbonBar Name="TablesRibbonBar" Width="Auto" Header="Tables">
                     <sf:RibbonButton x:Name="SponsorsTableButton" Label="Sponsors" />
@@ -39,7 +39,7 @@
                     <sf:RibbonButton x:Name="SponsorGoalsTableButton" Label="Sponsor Goals" />
                     <sf:RibbonButton x:Name="CyclistsTableButton" Label="Cyclists" />
                     <sf:RibbonButton x:Name="StagesTableButton" Label="Stages" />
-                    <sf:ComboBoxAdv x:Name="OtherTablesComboBox" MinWidth="80"/>
+                    <sf:ComboBoxAdv x:Name="cboTableSelection" MinWidth="80"/>
                 </sf:RibbonBar>
                 <sf:RibbonBar Header="Mass editing">
                     <StackPanel Orientation="Horizontal">

@@ -13,19 +13,12 @@ namespace LachisEditor
         public NewMainWindow()
         {
             InitializeComponent();
+
+
         }
 
-        void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        void LoadDatabaseButton_OnClick(object sender, RoutedEventArgs e)
         {
-            /*var ofd = new OpenFileDialog();
-            var result = ofd.ShowDialog();
-            if (result==true)
-            {
-                //MessageBox.Show(ofd.FileName);
-                var dbLoader = new DBLoader();
-                dbLoader.ProgressStart("ImportDatabase", ofd.FileName);
-            }*/
-
             if (this.SecurityCheckUnsavedData(true))
             {
                 string strPath = "";
@@ -45,14 +38,22 @@ namespace LachisEditor
                         _strInitialDirectoryFolder = ioPath.GetDirectoryName(strPath);
                         this.StartLongJob("ImportDatabase", strPath);
                         _blnCodeIsRunning = true;
+                        
                         //DBLoader.Databases_FillList(this.cboDBSelection, true);
                         //DBLoader.Tables_FillList(this.cboTableSelection);
+                        FillCboTableSelection();
 
                         MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", false);
                         _blnCodeIsRunning = false;
                     }
                 }
             }
+        }
+
+        void FillCboTableSelection()
+        {
+            // Fill Table Selection ComboBox
+            DBLoader.Tables_FillList(cboTableSelection);
         }
 
         bool SecurityCheckUnsavedData(bool blnCloseTable)
