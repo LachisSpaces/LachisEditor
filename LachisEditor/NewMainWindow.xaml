@@ -38,10 +38,14 @@
                                      Click="SponsorsTableButton_OnClick"/>
                     <sf:RibbonButton x:Name="TeamsTableButton" Label="Teams"
                                      Click="TeamsTableButton_OnClick"/>
-                    <sf:RibbonButton x:Name="RacesTableButton" Label="Races" />
-                    <sf:RibbonButton x:Name="SponsorGoalsTableButton" Label="Sponsor Goals" />
-                    <sf:RibbonButton x:Name="CyclistsTableButton" Label="Cyclists" />
-                    <sf:RibbonButton x:Name="StagesTableButton" Label="Stages" />
+                    <sf:RibbonButton x:Name="RacesTableButton" Label="Races"
+                                     Click="RacesTableButton_OnClick"/>
+                    <sf:RibbonButton x:Name="SponsorGoalsTableButton" Label="Sponsor Goals"
+                                     Click="SponsorGoalsTableButton_OnClick"/>
+                    <sf:RibbonButton x:Name="CyclistsTableButton" Label="Cyclists"
+                                     Click="CyclistsTableButton_OnClick"/>
+                    <sf:RibbonButton x:Name="StagesTableButton" Label="Stages"
+                                     Click="StagesTableButton_OnClick"/>
                     <sf:ComboBoxAdv x:Name="CboTableSelection" MinWidth="80"
                                     ItemsSource="{Binding ExistingTables}"/>
                 </sf:RibbonBar>

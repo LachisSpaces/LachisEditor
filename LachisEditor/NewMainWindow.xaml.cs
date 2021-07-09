@@ -53,8 +53,6 @@ namespace LachisEditor
 
         public NewMainWindow()
         {
-
-            
             InitializeComponent();
 
             this.SetLanguage(null);
@@ -66,21 +64,20 @@ namespace LachisEditor
             // this.rcbOptionUseTeamFilter.IsChecked = (bool)App.Current.Properties[Const.OptionsUseTeamFilter];
             // this.cbtOptionUseTeamFilter.IsChecked = (bool)App.Current.Properties[Const.OptionsUseTeamFilter];
             //DBLoader.Databases_FillList(this.cboDBSelection, false);
-
         }
 
         private void SetLanguage(string strLanguage)
         {
             if (strLanguage != null)
                 LanguageOptions.SelectedLanguage = strLanguage;
-            ((XmlDataProvider)(this.FindResource("Lang"))).Document = LanguageOptions.XmlLanguage;
-            
+            ((XmlDataProvider) (this.FindResource("Lang"))).Document = LanguageOptions.XmlLanguage;
+
             //TODO: Adjust Control Labels by language
             //this.rcbOptionUseTranslatedFields.Caption = LanguageOptions.Text("MainWindow/ApplicationMenu/Options/UseTranslatedFields");
             //this.rcbOptionUseForeignKeyLookup.Caption = LanguageOptions.Text("MainWindow/ApplicationMenu/Options/UseForeignKeyLookup");
             //this.rcbOptionUseTeamFilter.Caption = LanguageOptions.Text("MainWindow/ApplicationMenu/Options/UseTeamFilter");
         }
-        
+
         private void Menu_SetAvailableLanguages()
         {
             //TODO: Set Available Languages
@@ -96,7 +93,7 @@ namespace LachisEditor
                 this.rmtLanguage.Items.Add(rbt);
             }*/
         }
-        
+
         void LoadDatabaseButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (this.SecurityCheckUnsavedData(true))
@@ -118,7 +115,7 @@ namespace LachisEditor
                         _strInitialDirectoryFolder = ioPath.GetDirectoryName(strPath);
                         this.StartLongJob("ImportDatabase", strPath);
                         _blnCodeIsRunning = true;
-                        
+
                         //DBLoader.Databases_FillList(this.cboDBSelection, true);
                         //DBLoader.Tables_FillList(this.cboTableSelection);
                         ExistingTables = new ObservableCollection<string>(DBLoader.GetExistingTables());
@@ -181,7 +178,6 @@ namespace LachisEditor
             w = null;
         }
 
-      
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -192,21 +188,9 @@ namespace LachisEditor
         }
 
         #region Button ClickHandlers
-            //TODO: Using the Command-Pattern would be a better solution
-        void TeamsTableButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!CanExecuteFilterCommand()) return;
 
-            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_team", UseTeamFilter);
-        }
+        //TODO: Using the Command-Pattern would be a better solution
 
-        void SponsorsTableButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!CanExecuteFilterCommand()) return;
-            
-            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_sponsor", UseTeamFilter);
-        }
-        
         bool CanExecuteFilterCommand()
         {
             if (_blnCodeIsRunning) return false;
@@ -219,8 +203,48 @@ namespace LachisEditor
             return true;
         }
 
+        void TeamsTableButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!CanExecuteFilterCommand()) return;
 
+            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_team", UseTeamFilter);
+        }
 
+        void SponsorsTableButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!CanExecuteFilterCommand()) return;
+
+            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_sponsor", UseTeamFilter);
+        }
+
+        void RacesTableButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!CanExecuteFilterCommand()) return;
+
+            MainDataGrid.ItemsSource = DBLoader.GetDataView("STA_race", UseTeamFilter);
+        }
+
+        void SponsorGoalsTableButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!CanExecuteFilterCommand()) return;
+
+            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_objectif", UseTeamFilter);
+        }
+
+        void CyclistsTableButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!CanExecuteFilterCommand()) return;
+
+            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
+        }
+
+        void StagesTableButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!CanExecuteFilterCommand()) return;
+
+            MainDataGrid.ItemsSource = DBLoader.GetDataView("STA_stage", UseTeamFilter);
+        }
         #endregion
+
     }
 }
