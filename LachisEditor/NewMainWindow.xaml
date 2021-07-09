@@ -8,6 +8,14 @@
                  Title="Lachis Editor" Height="450" Width="820"
                  WindowStartupLocation="CenterScreen"
                  Office2010Icon="Star.ico">
+    
+    <Window.Resources>
+        <Style TargetType="sf:GroupDropArea">
+            <Setter Property="Height" Value="80" />        
+
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -61,7 +69,11 @@
             </sf:RibbonTab>
 
         </sf:Ribbon>
-        <sf:SfDataGrid Grid.Row="1" x:Name="MainDataGrid"/>
+        <sf:SfDataGrid Grid.Row="1" x:Name="MainDataGrid"
+                       AllowFiltering="True"
+                       AllowGrouping="True"
+                       ShowGroupDropArea="True" IsGroupDropAreaExpanded="True"
+                       AllowSorting="True"/>
     </Grid>
     
       
