@@ -97,7 +97,7 @@ namespace LachisEditor
                         //DBLoader.Tables_FillList(this.cboTableSelection);
                         FillCboTableSelection();
 
-                        MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", false);
+                        MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
                         _blnCodeIsRunning = false;
                     }
                 }
@@ -170,7 +170,7 @@ namespace LachisEditor
                 return;
             }
             
-            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_sponsor", false);
+            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_sponsor", UseTeamFilter);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
