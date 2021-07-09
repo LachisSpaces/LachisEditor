@@ -2,12 +2,14 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Xml;
 using LachisEditor.Annotations;
 using LachisEditor.Models;
 using Microsoft.Win32;
 using Syncfusion.Data.Extensions;
+using Syncfusion.Windows.Tools.Controls;
 using ioPath = System.IO.Path;
 
 namespace LachisEditor
@@ -244,7 +246,19 @@ namespace LachisEditor
 
             MainDataGrid.ItemsSource = DBLoader.GetDataView("STA_stage", UseTeamFilter);
         }
-        #endregion
 
+        void CboTableSelection_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!CanExecuteFilterCommand()) return;
+
+            var tableSelectionComboBox = sender as ComboBoxAdv;
+            if (tableSelectionComboBox == null) return;
+            if (string.IsNullOrEmpty(tableSelectionComboBox.SelectedValue.ToString())) return;
+
+                MainDataGrid.ItemsSource =
+                    DBLoader.GetDataView(tableSelectionComboBox.SelectedValue.ToString(), UseTeamFilter);
+        }
+
+        #endregion
     }
 }
