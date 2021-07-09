@@ -1,4 +1,6 @@
 using System.Windows;
+using System.Windows.Data;
+using System.Xml;
 using Microsoft.Win32;
 using Syncfusion.Data.Extensions;
 using ioPath = System.IO.Path;
@@ -9,14 +11,66 @@ namespace LachisEditor
     {
         string _strInitialDirectoryFolder;
         bool _blnCodeIsRunning = false;
+        readonly string _strRecentDatabase;
 
         public NewMainWindow()
         {
+            DBLoader.ApplicationPath = ioPath.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly()?.Location);
+            XmlDocument xDocOptions = new XmlDocument();
+            xDocOptions.Load(DBLoader.ApplicationPath + Const.ApplicationOptionFile);
+            XmlNode xRoot = xDocOptions.SelectSingleNode(string.Concat("/", Const.TopNode));
+            _strRecentDatabase = xRoot.SelectSingleNode(Const.OptionsRecentDatabase).InnerText;
+            _strInitialDirectoryFolder = xRoot.SelectSingleNode(Const.OptionsFolderSaveGames)?.InnerText;
+            App.Current.Properties[Const.OptionsUseTeamFilter] = xRoot.SelectSingleNode(Const.OptionsUseTeamFilter)?.InnerText == "1";
+            App.Current.Properties[Const.OptionsUseTranslatedFields] = xRoot.SelectSingleNode(Const.OptionsUseTranslatedFields)?.InnerText == "1";
+            App.Current.Properties[Const.OptionsUseForeignKeyLookup] = xRoot.SelectSingleNode(Const.OptionsUseForeignKeyLookup)?.InnerText == "1";
+            App.Current.Properties[Const.TableFilterColumn] = "";
+            App.Current.Properties[Const.TableFilterValue] = "";
+            App.Current.Properties[Const.TableFilterType] = "";
+            App.Current.Properties[Const.SelectedTable] = "";
+            
             InitializeComponent();
 
+            this.SetLanguage(null);
+            this.Menu_SetAvailableLanguages();
+            // this.rcbOptionUseTranslatedFields.IsChecked = (bool)App.Current.Properties[Const.OptionsUseTranslatedFields];
+            // this.cbtOptionUseTranslatedFields.IsChecked = (bool)App.Current.Properties[Const.OptionsUseTranslatedFields];
+            // this.rcbOptionUseForeignKeyLookup.IsChecked = (bool)App.Current.Properties[Const.OptionsUseForeignKeyLookup];
+            // this.cbtOptionUseForeignKeyLookup.IsChecked = (bool)App.Current.Properties[Const.OptionsUseForeignKeyLookup];
+            // this.rcbOptionUseTeamFilter.IsChecked = (bool)App.Current.Properties[Const.OptionsUseTeamFilter];
+            // this.cbtOptionUseTeamFilter.IsChecked = (bool)App.Current.Properties[Const.OptionsUseTeamFilter];
+            //DBLoader.Databases_FillList(this.cboDBSelection, false);
 
         }
 
+        private void SetLanguage(string strLanguage)
+        {
+            if (strLanguage != null)
+                LanguageOptions.SelectedLanguage = strLanguage;
+            ((XmlDataProvider)(this.FindResource("Lang"))).Document = LanguageOptions.XmlLanguage;
+            
+            //TODO: Adjust Control Labels by language
+            //this.rcbOptionUseTranslatedFields.Caption = LanguageOptions.Text("MainWindow/ApplicationMenu/Options/UseTranslatedFields");
+            //this.rcbOptionUseForeignKeyLookup.Caption = LanguageOptions.Text("MainWindow/ApplicationMenu/Options/UseForeignKeyLookup");
+            //this.rcbOptionUseTeamFilter.Caption = LanguageOptions.Text("MainWindow/ApplicationMenu/Options/UseTeamFilter");
+        }
+        
+        private void Menu_SetAvailableLanguages()
+        {
+            //TODO: Set Available Languages
+            /*foreach (string s in LanguageOptions.AvailableLanguages)
+            {
+                RadioButtonTool rbt = new RadioButtonTool();
+                rbt.Click += new RoutedEventHandler(this.rbtLanguage_OnClick);
+                rbt.IsChecked = (s == LanguageOptions.SelectedLanguage);
+                rbt.Caption = s;
+                rbt.Tag = s;
+                try { rbt.LargeImage = BitmapFrame.Create(new Uri(string.Concat(LanguageOptions.LanguageFolder, s, ".jpg"))); }
+                catch { }
+                this.rmtLanguage.Items.Add(rbt);
+            }*/
+        }
+        
         void LoadDatabaseButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (this.SecurityCheckUnsavedData(true))
