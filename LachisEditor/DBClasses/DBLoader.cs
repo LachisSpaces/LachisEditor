@@ -122,7 +122,7 @@ namespace LachisEditor
             }
         }
 
-        public static List<string> GetExistingTables()
+        public static List<string> GetExistingTableNames()
         {
             var result = new List<string>();
             

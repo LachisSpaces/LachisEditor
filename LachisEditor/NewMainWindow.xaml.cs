@@ -203,7 +203,7 @@ namespace LachisEditor
 
                         //DBLoader.Databases_FillList(this.cboDBSelection, true);
                         //DBLoader.Tables_FillList(this.cboTableSelection);
-                        ExistingTables = new ObservableCollection<string>(DBLoader.GetExistingTables());
+                        ExistingTables = new ObservableCollection<string>(DBLoader.GetExistingTableNames());
                         ExistingTeams = new ObservableCollection<Team>(DBLoader.GetExistingTeams());
 
                        // MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
@@ -233,42 +233,42 @@ namespace LachisEditor
         {
             if (!CanExecuteFilterCommand()) return;
 
-            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_team", UseTeamFilter);
+            MainDataGrid.ItemsSource = DBLoader.DsCyanideDb.Tables["DYN_team"];
         }
 
         void SponsorsTableButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (!CanExecuteFilterCommand()) return;
 
-            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_sponsor", UseTeamFilter);
+            MainDataGrid.ItemsSource = DBLoader.DsCyanideDb.Tables["DYN_sponsor"];
         }
 
         void RacesTableButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (!CanExecuteFilterCommand()) return;
 
-            MainDataGrid.ItemsSource = DBLoader.GetDataView("STA_race", UseTeamFilter);
+            MainDataGrid.ItemsSource = DBLoader.DsCyanideDb.Tables["STA_race"];
         }
 
         void SponsorGoalsTableButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (!CanExecuteFilterCommand()) return;
 
-            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_objectif", UseTeamFilter);
+            MainDataGrid.ItemsSource = DBLoader.DsCyanideDb.Tables["DYN_objectif"];
         }
 
         void CyclistsTableButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (!CanExecuteFilterCommand()) return;
 
-            MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
+            MainDataGrid.ItemsSource = DBLoader.DsCyanideDb.Tables["DYN_cyclist"];
         }
 
         void StagesTableButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (!CanExecuteFilterCommand()) return;
 
-            MainDataGrid.ItemsSource = DBLoader.GetDataView("STA_stage", UseTeamFilter);
+            MainDataGrid.ItemsSource = DBLoader.DsCyanideDb.Tables["STA_stage"];
         }
 
         void CboTableSelection_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -280,7 +280,7 @@ namespace LachisEditor
             if (string.IsNullOrEmpty(tableSelectionComboBox.SelectedValue.ToString())) return;
 
             MainDataGrid.ItemsSource =
-                DBLoader.GetDataView(tableSelectionComboBox.SelectedValue.ToString(), UseTeamFilter);
+                DBLoader.DsCyanideDb.Tables[tableSelectionComboBox.SelectedValue.ToString()];
         }
 
         #endregion
