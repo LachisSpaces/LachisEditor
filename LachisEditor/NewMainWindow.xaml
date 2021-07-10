@@ -49,7 +49,7 @@
                                      Click="CyclistsTableButton_OnClick"/>
                     <sf:RibbonButton x:Name="StagesTableButton" Label="Stages"
                                      Click="StagesTableButton_OnClick"/>
-                    <sf:ComboBoxAdv x:Name="CboTableSelection" MinWidth="80"
+                    <sf:RibbonComboBox x:Name="CboTableSelection" MinWidth="80"
                                     ItemsSource="{Binding ExistingTables}"
                                     SelectionChanged="CboTableSelection_OnSelectionChanged"/>
                 </sf:RibbonBar>
@@ -78,7 +78,7 @@
                     <sf:RibbonCheckBox x:Name="UseColumnTranslationCheckBox" 
                                        Content="Use Column Translation"/>
                     <StackPanel Orientation="Horizontal">
-                        <sf:ComboBoxAdv x:Name="CboTeamFilter" 
+                        <sf:RibbonComboBox x:Name="CboTeamFilter" 
                                         MinWidth="80"
                                         ItemsSource="{Binding ExistingTeams}"
                                         DisplayMemberPath="TeamFullName"/>

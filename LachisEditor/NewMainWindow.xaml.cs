@@ -275,7 +275,7 @@ namespace LachisEditor
         {
             if (!CanExecuteFilterCommand()) return;
 
-            var tableSelectionComboBox = sender as ComboBoxAdv;
+            var tableSelectionComboBox = sender as RibbonComboBox;
             if (tableSelectionComboBox == null) return;
             if (string.IsNullOrEmpty(tableSelectionComboBox.SelectedValue.ToString())) return;
 
