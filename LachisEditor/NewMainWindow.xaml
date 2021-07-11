@@ -94,7 +94,7 @@
                        AllowGrouping="True"
                        ShowGroupDropArea="True" IsGroupDropAreaExpanded="True"
                        AllowSorting="True"
-                       AutoGenerateRelations="True"
+                       AutoGenerateRelations="false"
                        HideEmptyGridViewDefinition="True"/>
     </Grid>
     

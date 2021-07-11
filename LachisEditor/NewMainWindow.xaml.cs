@@ -6,6 +6,7 @@ using LachisEditor.Annotations;
 using LachisEditor.Models;
 using Microsoft.Win32;
 using Syncfusion.UI.Xaml.Grid;
+using Syncfusion.UI.Xaml.Grid.Helpers;
 using Syncfusion.Windows.Tools.Controls;
 using ioPath = System.IO.Path;
 using SelectionChangedEventArgs = System.Windows.Controls.SelectionChangedEventArgs;
@@ -76,6 +77,8 @@ namespace LachisEditor
             //Register Event Handlers
             CboTableSelection.SelectionChanged += CboTableSelection_OnSelectionChanged;
             MainDataGrid.ItemsSourceChanged += MainDataGridOnItemsSourceChanged;
+            MasterDetailViewCheckbox.Checked += ToggleMasterDetailView;
+            MasterDetailViewCheckbox.Unchecked += ToggleMasterDetailView;
         }
 
         #endregion
@@ -186,9 +189,14 @@ namespace LachisEditor
 
         #region Private Methods
 
-        void ActivateMasterDetailView()
+        void ToggleMasterDetailView(object sender, RoutedEventArgs e)
         {
+            //BUG: Deactivating Master Detail View does not work
+            
+            var tmpItemSource = MainDataGrid.ItemsSource;
+            MainDataGrid.ItemsSource = null;
             MainDataGrid.AutoGenerateRelations = !MainDataGrid.AutoGenerateRelations;
+            MainDataGrid.ItemsSource = tmpItemSource;
         }
 
         #endregion
