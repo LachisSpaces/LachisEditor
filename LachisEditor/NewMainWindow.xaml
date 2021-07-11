@@ -76,6 +76,8 @@
                                        Content="Use Lookups"/>
                     <sf:RibbonCheckBox x:Name="UseColumnTranslationCheckBox" 
                                        Content="Use Column Translation"/>
+                    <sf:RibbonCheckBox x:Name="MasterDetailViewCheckbox"
+                                       Content="Master Detail View"/>
                     <StackPanel Orientation="Horizontal">
                         <sf:RibbonComboBox x:Name="CboTeamFilter" 
                                         MinWidth="80"

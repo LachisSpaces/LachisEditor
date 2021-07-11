@@ -184,6 +184,14 @@ namespace LachisEditor
 
         #region Event Handlers
 
+        #region Private Methods
+
+        void ActivateMasterDetailView()
+        {
+            MainDataGrid.AutoGenerateRelations = !MainDataGrid.AutoGenerateRelations;
+        }
+
+        #endregion
         #region Button ClickHandlers
 
         void LoadDatabaseButton_OnClick(object sender, RoutedEventArgs e)
