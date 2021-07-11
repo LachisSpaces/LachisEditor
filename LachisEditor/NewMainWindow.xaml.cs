@@ -1,18 +1,19 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using LachisEditor.Annotations;
 using LachisEditor.Models;
 using Microsoft.Win32;
+using Syncfusion.UI.Xaml.Grid;
 using Syncfusion.Windows.Tools.Controls;
 using ioPath = System.IO.Path;
+using SelectionChangedEventArgs = System.Windows.Controls.SelectionChangedEventArgs;
 
 namespace LachisEditor
 {
     //TODO: Lookup Columns via: https://help.syncfusion.com/wpf/datagrid/column-types#gridmulticolumndropdownlist
-    
+
     public sealed partial class NewMainWindow : INotifyPropertyChanged
     {
         #region Members
@@ -71,6 +72,10 @@ namespace LachisEditor
             // this.rcbOptionUseTeamFilter.IsChecked = (bool)App.Current.Properties[Const.OptionsUseTeamFilter];
             // this.cbtOptionUseTeamFilter.IsChecked = (bool)App.Current.Properties[Const.OptionsUseTeamFilter];
             //DBLoader.Databases_FillList(this.cboDBSelection, false);
+
+            //Register Event Handlers
+            CboTableSelection.SelectionChanged += CboTableSelection_OnSelectionChanged;
+            MainDataGrid.ItemsSourceChanged += MainDataGridOnItemsSourceChanged;
         }
 
         #endregion
@@ -177,6 +182,8 @@ namespace LachisEditor
 
         #endregion
 
+        #region Event Handlers
+
         #region Button ClickHandlers
 
         void LoadDatabaseButton_OnClick(object sender, RoutedEventArgs e)
@@ -189,7 +196,7 @@ namespace LachisEditor
                 if (!System.IO.Directory.Exists(_strInitialDirectoryFolder))
                     _strInitialDirectoryFolder = "";
                 dlg.InitialDirectory = _strInitialDirectoryFolder;
-                if ((bool)dlg.ShowDialog())
+                if ((bool) dlg.ShowDialog())
                     path = dlg.FileName;
                 if (!string.IsNullOrEmpty(path))
                 {
@@ -206,8 +213,8 @@ namespace LachisEditor
                         ExistingTables = new ObservableCollection<string>(DBLoader.GetExistingTableNames());
                         ExistingTeams = new ObservableCollection<Team>(DBLoader.GetExistingTeams());
 
-                       // MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
-                       MainDataGrid.ItemsSource = DBLoader.DsCyanideDb.Tables["DYN_team"];
+                        // MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
+                        MainDataGrid.ItemsSource = DBLoader.DsCyanideDb.Tables["DYN_team"];
                         _blnCodeIsRunning = false;
                     }
                 }
@@ -278,10 +285,19 @@ namespace LachisEditor
             var tableSelectionComboBox = sender as RibbonComboBox;
             if (tableSelectionComboBox == null) return;
             if (string.IsNullOrEmpty(tableSelectionComboBox.SelectedValue.ToString())) return;
-
+            
             MainDataGrid.ItemsSource =
                 DBLoader.DsCyanideDb.Tables[tableSelectionComboBox.SelectedValue.ToString()];
         }
+
+        void MainDataGridOnItemsSourceChanged(object sender, GridItemsSourceChangedEventArgs e)
+        {
+            CboTableSelection.SelectionChanged -= CboTableSelection_OnSelectionChanged;
+            CboTableSelection.SelectedValue = (MainDataGrid.ItemsSource as DBTable)?.TableName;
+            CboTableSelection.SelectionChanged += CboTableSelection_OnSelectionChanged;
+        }
+
+        #endregion
 
         #endregion
 

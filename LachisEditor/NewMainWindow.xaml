@@ -50,8 +50,7 @@
                     <sf:RibbonButton x:Name="StagesTableButton" Label="Stages"
                                      Click="StagesTableButton_OnClick"/>
                     <sf:RibbonComboBox x:Name="CboTableSelection" MinWidth="80"
-                                    ItemsSource="{Binding ExistingTables}"
-                                    SelectionChanged="CboTableSelection_OnSelectionChanged"/>
+                                    ItemsSource="{Binding ExistingTables}"/>
                 </sf:RibbonBar>
                 <sf:RibbonBar Header="Mass editing" >
                     <StackPanel Orientation="Horizontal">
