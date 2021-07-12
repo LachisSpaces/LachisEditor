@@ -74,7 +74,7 @@ namespace LachisEditor
             sw.Write(msg.ToString());
             sw.Close();
             sw.Dispose();
-            Application.Current.MainWindow.Close();
+            Application.Current.MainWindow?.Close();
             // Prevent default unhandled exception processing
             e.Handled = true;
         }

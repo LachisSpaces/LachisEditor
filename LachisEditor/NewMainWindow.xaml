@@ -9,50 +9,55 @@
                  WindowStartupLocation="CenterScreen"
                  DataContext="{Binding RelativeSource={RelativeSource Self}}"
                  Office2010Icon="Star.ico">
-    
+
     <Window.Resources>
         <Style TargetType="sf:GroupDropArea">
-            <Setter Property="Height" Value="80" />        
+            <Setter Property="Height" Value="80" />
         </Style>
         <Style TargetType="sf:RibbonBar">
-            <Setter Property="IsPanelStateCollapsed" Value="False"/>
+            <Setter Property="IsPanelStateCollapsed" Value="False" />
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <sf:Ribbon >
+        <sf:Ribbon>
             <sf:Ribbon.ApplicationMenu>
-            <sf:ApplicationMenu Name="ApplicationMenu" Width="38" Height="38" IsPopupOpen="False" 
-                                ApplicationButtonImage="Star.ico">
-            </sf:ApplicationMenu>
+                <sf:ApplicationMenu Name="ApplicationMenu" Width="38" Height="38" IsPopupOpen="False"
+                                    ApplicationButtonImage="Star.ico" />
             </sf:Ribbon.ApplicationMenu>
             <sf:RibbonTab>
-                <sf:RibbonBar  Name="DatabasesRibbonBar" Width="Auto" Header="Databases">
-                    <sf:RibbonButton Label="Load Database"
-                                     Click="LoadDatabaseButton_OnClick" />
+                <sf:RibbonBar Name="DatabasesRibbonBar" Width="Auto" Header="Databases">
+                    <sf:RibbonButton x:Name="ImportDatabaseButton"
+                                     Label="Import Database"
+                                     Click="ImportDatabaseButton_OnClick" />
+                    <sf:RibbonButton x:Name="ExportDatabaseButton"
+                                     Label="Export Database"
+                                     Click="ExportDatabaseButton_OnClick" />
+                    <sf:RibbonButton x:Name="SaveDatabaseButton" 
+                        Label="Save Database"
+                                     Click="SaveDatabaseButton_OnClick" />
                 </sf:RibbonBar>
-                <sf:RibbonBar Name="TablesRibbonBar" MinWidth="240" Header="Tables"
-                              >
-                    <sf:RibbonButton x:Name="SponsorsTableButton" Label="Sponsors" 
-                                     Click="SponsorsTableButton_OnClick"/>
+                <sf:RibbonBar Name="TablesRibbonBar" MinWidth="240" Header="Tables">
+                    <sf:RibbonButton x:Name="SponsorsTableButton" Label="Sponsors"
+                                     Click="SponsorsTableButton_OnClick" />
                     <sf:RibbonButton x:Name="TeamsTableButton" Label="Teams"
-                                     Click="TeamsTableButton_OnClick"/>
+                                     Click="TeamsTableButton_OnClick" />
                     <sf:RibbonButton x:Name="RacesTableButton" Label="Races"
-                                     Click="RacesTableButton_OnClick"/>
+                                     Click="RacesTableButton_OnClick" />
                     <sf:RibbonButton x:Name="SponsorGoalsTableButton" Label="Sponsor Goals"
-                                     Click="SponsorGoalsTableButton_OnClick"/>
+                                     Click="SponsorGoalsTableButton_OnClick" />
                     <sf:RibbonButton x:Name="CyclistsTableButton" Label="Cyclists"
-                                     Click="CyclistsTableButton_OnClick"/>
+                                     Click="CyclistsTableButton_OnClick" />
                     <sf:RibbonButton x:Name="StagesTableButton" Label="Stages"
-                                     Click="StagesTableButton_OnClick"/>
+                                     Click="StagesTableButton_OnClick" />
                     <sf:RibbonComboBox x:Name="CboTableSelection" MinWidth="80"
-                                    ItemsSource="{Binding ExistingTables}"/>
+                                       ItemsSource="{Binding ExistingTables}" />
                 </sf:RibbonBar>
-                <sf:RibbonBar Header="Mass editing" >
+                <sf:RibbonBar Header="Mass editing">
                     <StackPanel Orientation="Horizontal">
                         <sf:RibbonComboBox x:Name="MassEditValueCombobox"
                                            MinWidth="120" />
@@ -71,20 +76,21 @@
                         <sf:RibbonButton x:Name="MassEditClearButton" Label="Clear" />
                     </StackPanel>
                 </sf:RibbonBar>
-                <sf:RibbonBar Header="Options" >
-                    <sf:RibbonCheckBox x:Name="UseLookupCheckBox" 
-                                       Content="Use Lookups"/>
-                    <sf:RibbonCheckBox x:Name="UseColumnTranslationCheckBox" 
-                                       Content="Use Column Translation"/>
+                <sf:RibbonBar Header="Options">
+                    <sf:RibbonCheckBox x:Name="UseLookupCheckBox"
+                                       Content="Use Lookups" />
+                    <sf:RibbonCheckBox x:Name="UseColumnTranslationCheckBox"
+                                       Content="Use Column Translation" />
                     <sf:RibbonCheckBox x:Name="MasterDetailViewCheckbox"
-                                       Content="Master Detail View"/>
+                                       Content="Master Detail View" />
                     <StackPanel Orientation="Horizontal">
-                        <sf:RibbonComboBox x:Name="CboTeamFilter" 
-                                        MinWidth="80"
-                                        ItemsSource="{Binding ExistingTeams}"
-                                        DisplayMemberPath="TeamFullName"/>
+                        <sf:RibbonComboBox x:Name="CboTeamFilter"
+                                           MinWidth="80"
+                                           ItemsSource="{Binding ExistingTeams}"
+                                           DisplayMemberPath="TeamFullName" />
                         <sf:RibbonCheckBox x:Name="CboxUseTeamFilter" Content="Use Team Filter"
-                                           IsChecked="{Binding UseTeamFilter}" /></StackPanel>
+                                           IsChecked="{Binding UseTeamFilter}" />
+                    </StackPanel>
                 </sf:RibbonBar>
             </sf:RibbonTab>
 
@@ -95,12 +101,9 @@
                        ShowGroupDropArea="True" IsGroupDropAreaExpanded="True"
                        AllowSorting="True"
                        AutoGenerateRelations="false"
-                       HideEmptyGridViewDefinition="True"/>
+                       HideEmptyGridViewDefinition="True"
+                       AllowEditing="True"/>
     </Grid>
-    
-      
-       
-   
 
 
 </sf:RibbonWindow>

@@ -147,7 +147,7 @@ namespace LachisEditor
         {
             //TODO:  Implement
 
-            return false;
+            return true;
             // if (this.MainFrame.Content != null)
             // {
             //     bool blnSaveOK = ((Pages.Table)this.MainFrame.Content).SaveBeforeClosing();
@@ -202,7 +202,7 @@ namespace LachisEditor
         #endregion
         #region Button ClickHandlers
 
-        void LoadDatabaseButton_OnClick(object sender, RoutedEventArgs e)
+        void ImportDatabaseButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (this.SecurityCheckUnsavedData(true))
             {
@@ -232,6 +232,38 @@ namespace LachisEditor
                         // MainDataGrid.ItemsSource = DBLoader.GetDataView("DYN_cyclist", UseTeamFilter);
                         MainDataGrid.ItemsSource = DBLoader.DsCyanideDb.Tables["DYN_team"];
                         _blnCodeIsRunning = false;
+                    }
+                }
+            }
+        }
+
+        void SaveDatabaseButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            DBLoader.SaveDatabase();
+        }
+
+        private void ExportDatabaseButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!DBLoader.DataIsLoaded)
+                LanguageOptions.ShowMessage("MainWindow/Messages/NoDataLoaded", MessageBoxButton.OK);
+            else if (this.SecurityCheckUnsavedData(true))
+            {
+                string strPath = "";
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Filter = "*.cdb (cyanide database)|*.cdb";
+                if (!System.IO.Directory.Exists(_strInitialDirectoryFolder))
+                    _strInitialDirectoryFolder = "";
+                dlg.InitialDirectory = _strInitialDirectoryFolder;
+                if ((bool) dlg.ShowDialog())
+                    strPath = dlg.FileName;
+                if (!string.IsNullOrEmpty(strPath))
+                {
+                    if (ioPath.GetFileName(strPath).Contains(" "))
+                        LanguageOptions.ShowMessage("MainWindow/Messages/FileNameInvalid", MessageBoxButton.OK);
+                    else
+                    {
+                        _strInitialDirectoryFolder = ioPath.GetDirectoryName(strPath);
+                        this.StartLongJob("ExportDatabase", strPath);
                     }
                 }
             }
@@ -318,5 +350,7 @@ namespace LachisEditor
         #endregion
 
         #endregion
+
+
     }
 }
