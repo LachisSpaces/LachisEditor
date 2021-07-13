@@ -225,6 +225,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\48x48\Check.png" />
+    <Resource Include="Images\48x48\Cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\16x16\Check.png" />
+    <Content Include="Images\16x16\Cross.png" />
+    <Content Include="Images\32x32\Check.png" />
+    <Content Include="Images\32x32\Cross.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

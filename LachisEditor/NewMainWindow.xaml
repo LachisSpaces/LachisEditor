@@ -82,9 +82,11 @@
                         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                             <sf:RibbonButton x:Name="ClearSearchTextboxButton"
                                              SizeForm="ExtraSmall"
+                                             SmallIcon="Images/16x16/Cross.png"
                                              Click="ClearSearchTextboxButton_OnClick"/>
                             <sf:RibbonButton x:Name="StartSearchButton"
                                              SizeForm="ExtraSmall"
+                                             SmallIcon="Images/16x16/Check.png"
                                              Click="StartSearchButton_OnClick"/>
                         </StackPanel>
 
