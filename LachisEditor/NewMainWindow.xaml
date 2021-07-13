@@ -37,8 +37,8 @@
                     <sf:RibbonButton x:Name="ExportDatabaseButton"
                                      Label="Export Database"
                                      Click="ExportDatabaseButton_OnClick" />
-                    <sf:RibbonButton x:Name="SaveDatabaseButton" 
-                        Label="Save Database"
+                    <sf:RibbonButton x:Name="SaveDatabaseButton"
+                                     Label="Save Database"
                                      Click="SaveDatabaseButton_OnClick" />
                 </sf:RibbonBar>
                 <sf:RibbonBar Name="TablesRibbonBar" MinWidth="240" Header="Tables">
@@ -58,23 +58,37 @@
                                        ItemsSource="{Binding ExistingTables}" />
                 </sf:RibbonBar>
                 <sf:RibbonBar Header="Mass editing">
-                    <StackPanel Orientation="Horizontal">
-                        <sf:RibbonComboBox x:Name="MassEditValueCombobox"
-                                           MinWidth="120" />
-                        <sf:RibbonComboBox x:Name="MassEditOperatorCombobox"
-                                           MinWidth="25">
-                            <ComboBoxItem>"="</ComboBoxItem>
-                            <ComboBoxItem>"+"</ComboBoxItem>
-                            <ComboBoxItem>"-"</ComboBoxItem>
-                            <ComboBoxItem>"+%"</ComboBoxItem>
-                            <ComboBoxItem>"-%"</ComboBoxItem>
-                        </sf:RibbonComboBox>
-                        <sf:RibbonTextBox MinWidth="120" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
-                        <sf:RibbonButton x:Name="MassEditApplyButton" Label="Apply" />
-                        <sf:RibbonButton x:Name="MassEditClearButton" Label="Clear" />
-                    </StackPanel>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <sf:ComboBoxAdv x:Name="MassEditColumnSelectionCheckBox"
+                                        MinWidth="120"
+                                        AllowMultiSelect="True"
+                                        AllowSelectAll="True"
+                                        DefaultText="Select Columns" />
+                        
+                        <sf:RibbonTextBox Grid.Row="1" x:Name="SearchValueTextBox"
+                                          MinWidth="160" />
+                        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                            <sf:RibbonButton x:Name="ClearSearchTextboxButton"
+                                             SizeForm="ExtraSmall" />
+                            <sf:RibbonButton x:Name="StartSearchButton"
+                                             SizeForm="ExtraSmall" /></StackPanel>
+
+                        <sf:RibbonTextBox Grid.Row="2" x:Name="ReplaceValueTextBox"/>
+                        <sf:RibbonButton Grid.Row="2" Grid.Column="1" Label="Replace"
+                                         SizeForm="Small"/>
+                    </Grid>
+                   
                 </sf:RibbonBar>
                 <sf:RibbonBar Header="Options">
                     <sf:RibbonCheckBox x:Name="UseLookupCheckBox"
@@ -102,7 +116,7 @@
                        AllowSorting="True"
                        AutoGenerateRelations="false"
                        HideEmptyGridViewDefinition="True"
-                       AllowEditing="True"/>
+                       AllowEditing="True" />
     </Grid>
 
 
