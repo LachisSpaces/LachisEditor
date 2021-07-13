@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Data;
+using System.Linq;
 using LachisEditor.Annotations;
 using LachisEditor.Models;
 using Microsoft.Win32;
+using Syncfusion.Data.Extensions;
 using Syncfusion.UI.Xaml.Grid;
 using Syncfusion.Windows.Tools.Controls;
 using ioPath = System.IO.Path;
@@ -193,7 +195,7 @@ namespace LachisEditor
         void ToggleMasterDetailView(object sender, RoutedEventArgs e)
         {
             //BUG: Deactivating Master Detail View does not work
-            
+
             var tmpItemSource = MainDataGrid.ItemsSource;
             MainDataGrid.ItemsSource = null;
             MainDataGrid.AutoGenerateRelations = !MainDataGrid.AutoGenerateRelations;
@@ -201,6 +203,7 @@ namespace LachisEditor
         }
 
         #endregion
+
         #region Button ClickHandlers
 
         void ImportDatabaseButton_OnClick(object sender, RoutedEventArgs e)
@@ -334,7 +337,7 @@ namespace LachisEditor
             var tableSelectionComboBox = sender as RibbonComboBox;
             if (tableSelectionComboBox == null) return;
             if (string.IsNullOrEmpty(tableSelectionComboBox.SelectedValue.ToString())) return;
-            
+
             MainDataGrid.ItemsSource =
                 DBLoader.DsCyanideDb.Tables[tableSelectionComboBox.SelectedValue.ToString()];
         }
@@ -344,7 +347,7 @@ namespace LachisEditor
             CboTableSelection.SelectionChanged -= CboTableSelection_OnSelectionChanged;
             CboTableSelection.SelectedValue = (MainDataGrid.ItemsSource as DBTable)?.TableName;
             CboTableSelection.SelectionChanged += CboTableSelection_OnSelectionChanged;
-            
+
             //Fill MassEditing Select Column ComboBox
             var columns = DBLoader.GetColumnNames(MainDataGrid.ItemsSource.ToString());
             MassEditColumnSelectionComboBox.ItemsSource = columns;
@@ -361,10 +364,20 @@ namespace LachisEditor
             SearchValueTextBox.Text = "";
         }
 
+        void StartSearchButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            /*//IF Columns are selected
+            var selectedItems = MassEditColumnSelectionComboBox.SelectedItems.ToList<string>();
+           if ( (selectedItems!= null) && (!selectedItems.Any()) )
+            {
+              
+            }*/
+
+            MainDataGrid.SearchHelper.Search(SearchValueTextBox.Text);
+        }
+
         #endregion
+
         #endregion
-
-
-
     }
 }

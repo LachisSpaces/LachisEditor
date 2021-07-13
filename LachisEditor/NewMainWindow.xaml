@@ -71,7 +71,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <sf:ComboBoxAdv x:Name="MassEditColumnSelectionComboBox"
-                                        MinWidth="120"
+                                        MinWidth="120" MaxWidth="160"
                                         AllowMultiSelect="True"
                                         AllowSelectAll="True"
                                         DefaultText="Select Columns" />
@@ -84,7 +84,9 @@
                                              SizeForm="ExtraSmall"
                                              Click="ClearSearchTextboxButton_OnClick"/>
                             <sf:RibbonButton x:Name="StartSearchButton"
-                                             SizeForm="ExtraSmall" /></StackPanel>
+                                             SizeForm="ExtraSmall"
+                                             Click="StartSearchButton_OnClick"/>
+                        </StackPanel>
 
                         <sf:RibbonTextBox Grid.Row="2" x:Name="ReplaceValueTextBox"/>
                         <sf:RibbonButton x:Name="ReplaceButton" 
