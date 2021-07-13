@@ -1,12 +1,13 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
+using System.Data;
 using LachisEditor.Annotations;
 using LachisEditor.Models;
 using Microsoft.Win32;
 using Syncfusion.UI.Xaml.Grid;
-using Syncfusion.UI.Xaml.Grid.Helpers;
 using Syncfusion.Windows.Tools.Controls;
 using ioPath = System.IO.Path;
 using SelectionChangedEventArgs = System.Windows.Controls.SelectionChangedEventArgs;
@@ -343,6 +344,10 @@ namespace LachisEditor
             CboTableSelection.SelectionChanged -= CboTableSelection_OnSelectionChanged;
             CboTableSelection.SelectedValue = (MainDataGrid.ItemsSource as DBTable)?.TableName;
             CboTableSelection.SelectionChanged += CboTableSelection_OnSelectionChanged;
+            
+            //Fill MassEditing Select Column ComboBox
+            var columns = DBLoader.GetColumnNames(MainDataGrid.ItemsSource.ToString());
+            MassEditColumnSelectionComboBox.ItemsSource = columns;
         }
 
         #endregion

@@ -70,7 +70,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <sf:ComboBoxAdv x:Name="MassEditColumnSelectionCheckBox"
+                        <sf:ComboBoxAdv x:Name="MassEditColumnSelectionComboBox"
                                         MinWidth="120"
                                         AllowMultiSelect="True"
                                         AllowSelectAll="True"
@@ -85,7 +85,8 @@
                                              SizeForm="ExtraSmall" /></StackPanel>
 
                         <sf:RibbonTextBox Grid.Row="2" x:Name="ReplaceValueTextBox"/>
-                        <sf:RibbonButton Grid.Row="2" Grid.Column="1" Label="Replace"
+                        <sf:RibbonButton x:Name="ReplaceButton" 
+                            Grid.Row="2" Grid.Column="1" Label="Replace"
                                          SizeForm="Small"/>
                     </Grid>
                    

@@ -844,7 +844,7 @@ namespace LachisEditor
             string strLastExceptionMessage = "";
             string strExceptionStackTrace = e.Error.StackTrace;
             Exception exception = e.Error.InnerException;
-            System.Text.StringBuilder msg = new System.Text.StringBuilder("----An error occured----\r\n");
+            StringBuilder msg = new StringBuilder("----An error occured----\r\n");
             msg.Append(e.Error.Message);
             strLastExceptionMessage = e.Error.Message;
             while (exception != null)
@@ -882,6 +882,17 @@ namespace LachisEditor
             }
 
             return result;
+        }
+
+        public static List<string> GetColumnNames(string tableName)
+        {
+            var columns = new List<string>();
+            foreach (System.Data.DataColumn c in DBLoader.DsCyanideDb.Tables[tableName].Columns)
+            {
+                columns.Add(c.ColumnName);
+            }
+
+            return columns;
         }
     }
 
