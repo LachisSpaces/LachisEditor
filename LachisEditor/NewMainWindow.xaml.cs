@@ -354,7 +354,16 @@ namespace LachisEditor
 
         #endregion
 
+        #region Mass Editing
+
+        void ClearSearchTextboxButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            SearchValueTextBox.Text = "";
+        }
+
         #endregion
+        #endregion
+
 
 
     }

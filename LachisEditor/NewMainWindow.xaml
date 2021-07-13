@@ -76,11 +76,13 @@
                                         AllowSelectAll="True"
                                         DefaultText="Select Columns" />
                         
-                        <sf:RibbonTextBox Grid.Row="1" x:Name="SearchValueTextBox"
+                        <sf:RibbonTextBox Grid.Row="1"
+                                          x:Name="SearchValueTextBox"
                                           MinWidth="160" />
                         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                             <sf:RibbonButton x:Name="ClearSearchTextboxButton"
-                                             SizeForm="ExtraSmall" />
+                                             SizeForm="ExtraSmall"
+                                             Click="ClearSearchTextboxButton_OnClick"/>
                             <sf:RibbonButton x:Name="StartSearchButton"
                                              SizeForm="ExtraSmall" /></StackPanel>
 
